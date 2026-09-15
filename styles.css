@@ -1,0 +1,1046 @@
+  :root {
+    --bg: #f4efe0;
+    --card: #fffaf0;
+    --ink: #241c33;
+    --sub: #6f6785;
+    --accent: #ff5d8f;
+    --accent-dark: #e13f72;
+    --clay: #3aa0ff;
+    --clay-dark: #1b7fe0;
+    --done: #33c281;
+    --line: #e7dfc9;
+    --danger: #d6455a;
+    --yellow: #ffcf3f;
+    --yellow-dark: #e8ac00;
+    --purple: #8b5cf6;
+    --purple-dark: #6d3fd4;
+    --sepia: #a9702f;
+    --sepia-dark: #7c4f1e;
+  }
+  * { box-sizing: border-box; }
+  html { scrollbar-width: thin; scrollbar-color: var(--accent) transparent; }
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; opacity: 0.5; }
+  ::-webkit-scrollbar-button { display: none; height: 0; width: 0; }
+  body {
+    margin: 0;
+    font-family: "Noto Sans TC", -apple-system, "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+  .screen { display: none; min-height: 100vh; min-height: 100dvh; flex-direction: column; }
+  .screen.active { display: flex; }
+  .topbar {
+    padding: 16px 20px;
+    background: var(--card);
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    border-bottom: 3px solid var(--ink);
+  }
+  .topbar h1 { font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 700; font-size: 17px; letter-spacing: 0.5px; margin: 0; }
+  .topbar .back {
+    cursor: pointer; font-family: "Noto Sans TC", sans-serif; font-weight: 700;
+    font-size: 13px; letter-spacing: 0.5px; padding: 8px 14px;
+    background: #fff; color: var(--ink); border: 3px solid var(--ink); border-radius: 30px;
+    box-shadow: 3px 3px 0 var(--ink); transition: transform 0.1s;
+  }
+  .topbar .back:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+  .content { padding: 20px; flex: 1; max-width: 560px; margin: 0 auto; width: 100%; }
+
+  /* Login screen — 任務委託書風格，楊嚮導在上方登場迎接玩家 */
+  .login-wrap {
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    min-height: 100vh; min-height: 100dvh; padding: 24px; position: relative; overflow-x: hidden;
+    background-image: radial-gradient(circle, rgba(169,112,47,0.16) 1.6px, transparent 1.6px);
+    background-size: 26px 26px;
+  }
+  .login-wrap .wrap { width: 100%; max-width: 360px; display: flex; flex-direction: column; align-items: center; }
+
+  .guide-intro { display: flex; align-items: flex-end; gap: 10px; width: 100%; margin-bottom: -22px; padding-left: 6px; z-index: 2; }
+  .guide-portrait {
+    flex: none; width: 84px; height: 84px; border-radius: 50%; background: var(--card);
+    border: 3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink);
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
+  }
+  .guide-portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%; }
+  .guide-bubble {
+    background: #fff; border: 2.5px solid var(--ink); border-radius: 16px 16px 16px 4px;
+    padding: 10px 13px; font-size: 12.5px; font-weight: 700; line-height: 1.55;
+    box-shadow: 3px 3px 0 var(--ink); margin-bottom: 14px; white-space: nowrap;
+  }
+
+  .login-card {
+    background: var(--card); border-radius: 4px; padding: 34px 26px 28px; width: 100%; max-width: 360px;
+    border: 3px solid var(--sepia); box-shadow: 7px 7px 0 var(--sepia-dark); text-align: center; position: relative;
+  }
+  /* 卡片四角的訂書針/圖釘裝飾，強化「文件」的手感 */
+  .login-card::before, .login-card::after {
+    content: ""; position: absolute; top: 10px; width: 9px; height: 9px; border-radius: 50%;
+    background: var(--sepia); box-shadow: inset 0 1px 1px rgba(0,0,0,0.3);
+  }
+  .login-card::before { left: 10px; }
+  .login-card::after { right: 10px; }
+  .dossier-kicker {
+    display: inline-flex; align-items: center; gap: 6px; font-family: "Noto Serif TC", serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 3px; color: var(--sepia-dark);
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 5px 0; margin-bottom: 16px; width: 100%;
+    justify-content: center;
+  }
+  .login-card h2 { margin: 0 0 6px; font-size: 22px; font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 700; }
+  .login-card p.desc { color: var(--sub); font-size: 13px; margin: 0 0 26px; white-space: nowrap; }
+  .login-card p.desc strong { color: var(--ink); }
+  .field-label {
+    display: block; text-align: left; font-size: 11.5px; font-weight: 800; color: var(--sepia-dark);
+    letter-spacing: 1px; margin: 0 0 6px 2px;
+  }
+  #code-input {
+    font-family: ui-monospace, "SFMono-Regular", Menlo, monospace; letter-spacing: 1px;
+  }
+  .login-links { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 360px; }
+  .stores-entry-link, .about-entry-link {
+    color: var(--ink); font-size: 13.5px; font-weight: 700; font-family: "Baloo 2", "Noto Sans TC", sans-serif;
+    cursor: pointer; background: var(--card); border: 3px solid var(--ink); border-radius: 14px;
+    box-shadow: 3px 3px 0 var(--ink); padding: 10px; text-align: center; transition: transform 0.1s;
+  }
+  .stores-entry-link:active, .about-entry-link:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+
+  /* 關於本遊戲：車票樣式彈窗 */
+  .about-overlay {
+    position: fixed; inset: 0; z-index: 1000; background: rgba(36,28,51,0.55);
+    display: none; align-items: center; justify-content: center; padding: 24px; overflow-y: auto;
+  }
+  .about-overlay.active { display: flex; }
+  .ticket {
+    position: relative; width: 100%; max-width: 360px;
+    background: var(--card); border: 2.5px solid var(--ink); border-radius: 10px;
+    box-shadow: 8px 8px 0 var(--sepia-dark); overflow: hidden; text-align: left;
+  }
+  .ticket-head {
+    background: var(--sepia); color: #fffaf0; border-radius: 8px 8px 0 0;
+    padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  }
+  .ticket-route { display: flex; align-items: center; gap: 6px; font-weight: 800; font-size: 13px; min-width: 0; }
+  .ticket-route svg { width: 14px; height: 14px; flex: none; opacity: 0.9; }
+  .ticket-route span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ticket-no { flex: none; font-family: ui-monospace, "SFMono-Regular", Menlo, monospace; font-size: 9.5px; opacity: 0.85; }
+  .ticket-body { padding: 16px 20px 4px; }
+  .about-title { margin: 0 0 10px; font-size: 16.5px; font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 700; line-height: 1.4; color: var(--ink); }
+  .ticket-field {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
+    padding: 8px 0; border-bottom: 1px dotted var(--line);
+  }
+  .ticket-field:first-child { padding-top: 0; }
+  .ticket-field .k { flex: none; font-size: 11px; font-weight: 700; color: var(--sepia-dark); letter-spacing: 1px; }
+  .ticket-field .v { flex: 1; min-width: 0; font-size: 13px; font-weight: 500; text-align: right; overflow-wrap: break-word; }
+  .ticket-field .v a { color: var(--accent-dark); font-weight: 700; text-decoration: underline; overflow-wrap: break-word; }
+  .ticket-desc-wrap { padding: 14px 20px; }
+  .ticket-desc { font-family: "Noto Serif TC", serif; font-size: 12.5px; line-height: 1.65; color: var(--ink); margin: 0; }
+  .ticket-perf { position: relative; width: 100%; height: 0; border-top: 2px dashed var(--ink); opacity: 0.75; }
+  .ticket-perf::before, .ticket-perf::after {
+    content: ""; position: absolute; top: -11px; width: 22px; height: 22px; border-radius: 50%; background: var(--bg);
+  }
+  .ticket-perf::before { left: -11px; }
+  .ticket-perf::after { right: -11px; }
+  .ticket-stub { padding: 12px 20px 16px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .ticket-barcode {
+    width: 100%; height: 20px; border-radius: 2px;
+    background: repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 5px, var(--ink) 5px 6px, transparent 6px 10px);
+    opacity: 0.85;
+  }
+  .about-close {
+    width: 100%; text-align: center; font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 800; font-size: 14px;
+    letter-spacing: 1px; color: var(--ink); background: var(--yellow); border: 3px solid var(--ink); border-radius: 999px;
+    box-shadow: 3px 3px 0 var(--ink); padding: 11px; cursor: pointer; box-sizing: border-box;
+  }
+  .about-close:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+
+  input[type=text] {
+    width: 100%; padding: 14px; font-size: 16px; border: 3px solid var(--ink);
+    border-radius: 12px; text-align: center; letter-spacing: 2px; margin-bottom: 12px;
+  }
+  input[type=text]:focus { outline: none; border-color: var(--accent); }
+  button {
+    width: 100%; padding: 14px; font-size: 16px; font-weight: 800; font-family: "Baloo 2", "Noto Sans TC", sans-serif;
+    background: var(--accent); color: white; border: 3px solid var(--ink); border-radius: 14px; box-shadow: 4px 4px 0 var(--ink);
+    cursor: pointer; transition: transform 0.1s;
+  }
+  button:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+  button.secondary { background: white; color: var(--ink); }
+  #login-btn { background: var(--sepia); border-radius: 14px; }
+  .error-msg { color: var(--danger); font-size: 13px; font-weight: 700; margin-top: 8px; min-height: 18px; }
+  .error-msg:not(:empty) {
+    background: #fce4e8; border: 2px solid var(--danger); border-radius: 10px; padding: 8px 10px;
+  }
+  .test-codes { margin-top: 20px; font-size: 12px; color: var(--sub); }
+
+  /* Progress bar */
+  .progress-wrap { background: var(--card); border-radius: 18px; padding: 16px; margin-bottom: 16px; border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); }
+  .progress-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+  .progress-top .count { font-size: 22px; font-weight: 800; font-family: "Baloo 2", "Noto Sans TC", sans-serif; color: var(--accent-dark); }
+  .progress-bar-bg { height: 10px; background: var(--line); border-radius: 6px; overflow: hidden; border: 1.5px solid var(--ink); }
+  .progress-bar-fill { height: 100%; background: var(--yellow); transition: width 0.3s; }
+  .reward-hint { font-size: 12px; color: var(--sub); margin-top: 8px; }
+
+  /* Bottom tab bar: shared nav across map / stamp book / shop / backpack */
+  .tabbar {
+    position: fixed; left: 50%; transform: translateX(-50%); bottom: 14px; z-index: 900;
+    width: calc(100% - 32px); max-width: 528px;
+    background: var(--ink); border-radius: 24px; display: none; padding: 6px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+  }
+  .tabbar.visible { display: flex; }
+  .tab-btn {
+    flex: 1; text-align: center; padding: 10px 0 8px; border-radius: 18px; cursor: pointer;
+    color: rgba(255,255,255,0.55); font-weight: 700; font-size: 10.5px; font-family: "Noto Sans TC", sans-serif;
+  }
+  .tab-btn .tab-ic { display: block; margin: 0 auto 3px; width: 22px; height: 22px; }
+  .tab-btn .tab-ic svg { width: 100%; height: 100%; display: block; }
+  .tab-btn.active { background: var(--yellow); color: var(--ink); }
+  .tab-page-content { padding-bottom: 100px; }
+
+  /* Stamp-book progress card (deliberately lighter/thinner than the bold theme elsewhere) */
+  .stampcard { position: relative; margin: 0 0 18px; background: #fbf8f1; border-radius: 20px; border: 1.5px solid #e4dcc8; padding: 20px 18px 18px; color: var(--ink); }
+  .stampcard-top { position: relative; display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1.5px dashed #ddd2b8; }
+  .stampcard-label { font-family: "Noto Sans TC", sans-serif; font-size: 10.5px; font-weight: 700; color: #9c9280; letter-spacing: 1.5px; }
+  .stampcard-count { font-family: "Noto Serif TC", serif; font-weight: 700; font-size: 32px; line-height: 1; margin-top: 5px; color: var(--ink); }
+  .stampcard-count small { font-size: 13px; font-weight: 500; color: #9c9280; }
+  .stampcard-reward { text-align: right; font-family: "Noto Sans TC", sans-serif; font-size: 11px; font-weight: 700; color: #8a7f68; max-width: 128px; line-height: 1.5; }
+  .stamp-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+  .stamp-slot { position: relative; aspect-ratio: 1; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: "Noto Serif TC", serif; font-weight: 700; font-size: 16px; }
+  .stamp-slot.empty { border: 1.5px dashed #ddd0b0; color: #d3c8ab; background: transparent; }
+  /* Filled slots look like an actual ink stamp/chop — a hand-stamped double ring, slightly askew */
+  .stamp-slot.filled {
+    border: 2.5px solid #b8402f; background: #fdf6ef; color: #b8402f;
+    box-shadow: inset 0 0 0 3px #fdf6ef, inset 0 0 0 4.5px rgba(184,64,47,0.55), 1px 2px 3px rgba(184,64,47,0.18);
+    transform: rotate(-6deg);
+  }
+  .stamp-slot.filled:nth-child(2n) { transform: rotate(5deg); }
+  .stamp-slot.filled:nth-child(3n) { transform: rotate(-3deg); }
+  .stamp-slot.filled:nth-child(4n) { transform: rotate(7deg); }
+  .stamp-slot.filled:nth-child(5n) { transform: rotate(-8deg); }
+
+  /* Station grid */
+  .station-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .station-card {
+    background: var(--card); border-radius: 16px; padding: 16px; cursor: pointer;
+    border: 3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); transition: transform 0.1s;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .station-card:active { transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--ink); }
+  .station-card.done { border-color: var(--ink); background: #eafaf0; }
+  .station-num { font-size: 12px; color: var(--sub); }
+  .station-name { font-size: 14px; font-weight: 700; line-height: 1.4; }
+  .station-status { font-size: 12px; margin-top: auto; }
+  .station-status.done { color: var(--done); font-weight: 700; }
+  .station-status.todo { color: var(--sub); }
+
+  /* Station detail */
+  .station-image { width: 100%; border-radius: 16px; margin-bottom: 14px; display: block; border: 3px solid var(--ink); }
+  .story-block { background: var(--card); border-radius: 16px; padding: 18px; margin-bottom: 14px; font-size: 14px; line-height: 1.8; color: var(--ink); border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); }
+
+  /* Rewards shop (token economy) — a dedicated stat card for the player's current badge balance,
+     same "label on top, big number below" pattern as the stamp-book progress card */
+  .shop-balance-card {
+    background: var(--yellow); color: var(--ink); border-radius: 18px; padding: 16px 20px; margin-bottom: 16px;
+    border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--ink);
+  }
+  .shop-balance-label { font-family: "Noto Sans TC", sans-serif; font-size: 11.5px; font-weight: 700; letter-spacing: 1.5px; opacity: 0.7; }
+  .shop-balance-value { font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 800; font-size: 34px; line-height: 1.2; margin-top: 4px; }
+  .shop-balance-value small { font-size: 14px; font-weight: 700; margin-left: 6px; }
+  .shop-category-filter {
+    display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 14px;
+    -ms-overflow-style: none; scrollbar-width: none;
+  }
+  .shop-category-filter::-webkit-scrollbar { display: none; }
+  .shop-category-chip {
+    flex: none; font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 700; font-size: 13px;
+    color: var(--ink); background: var(--card); border: 3px solid var(--ink); border-radius: 30px;
+    box-shadow: 3px 3px 0 var(--ink); padding: 8px 16px; cursor: pointer; transition: transform 0.1s;
+  }
+  .shop-category-chip:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+  .shop-category-chip.active { background: var(--yellow); }
+  .merchant-card {
+    display: flex; gap: 12px; align-items: center; background: var(--card); border-radius: 16px;
+    padding: 12px; margin-bottom: 12px; border: 3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); cursor: pointer;
+  }
+  .merchant-card:active { transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--ink); }
+  .merchant-thumb { width: 64px; height: 64px; border-radius: 12px; background-size: cover; background-position: center; flex: none; background-color: var(--line); border: 2px solid var(--ink); }
+  .icon-fallback { display: flex; align-items: center; justify-content: center; }
+  .icon-fallback svg { width: 55%; height: 55%; color: #fff; }
+  .merchant-body { flex: 1; min-width: 0; }
+  .merchant-name { font-size: 15px; font-weight: 800; font-family: "Baloo 2", "Noto Sans TC", sans-serif; color: var(--ink); }
+  .merchant-tagline { font-size: 12px; color: var(--sub); margin-top: 2px; }
+  .merchant-count { font-size: 12px; color: var(--purple-dark); font-weight: 700; margin-top: 6px; }
+  .shop-empty { color: var(--sub); font-size: 13px; text-align: center; padding: 30px 0; }
+
+  .shop-card {
+    background: white; border-radius: 20px; padding: 18px; width: 100%; max-width: 440px; text-align: left;
+    border: 4px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); max-height: 86vh; overflow-y: auto;
+  }
+  .shop-card-close { text-align: right; font-size: 15px; color: var(--sub); cursor: pointer; margin-bottom: 4px; }
+  .shop-card-photo { width: 100%; height: 200px; border-radius: 12px; background-size: cover; background-position: center; background-color: var(--line); margin-bottom: 14px; border: 3px solid var(--ink); }
+
+  /* Swipeable photo carousel for item detail — used instead of .shop-card-photo when a product has more than one photo */
+  .shop-photo-carousel { position: relative; border-radius: 12px; overflow: hidden; border: 3px solid var(--ink); margin-bottom: 14px; background: var(--line); touch-action: pan-y; }
+  .shop-photo-track { display: flex; transition: transform 0.3s ease; }
+  .shop-photo-slide { flex: none; width: 100%; height: 200px; background-size: cover; background-position: center; }
+  .shop-photo-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%); width: 30px; height: 30px; border-radius: 50%;
+    border: 2px solid var(--ink); background: rgba(255,255,255,0.9); color: var(--ink); font-size: 17px; font-weight: 800;
+    cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; line-height: 1;
+  }
+  .shop-photo-arrow:active { transform: translateY(-50%) scale(0.92); }
+  .shop-photo-arrow.prev { left: 8px; }
+  .shop-photo-arrow.next { right: 8px; }
+  .shop-photo-caption {
+    position: absolute; left: 8px; bottom: 8px; background: rgba(36,28,51,0.75); color: #fff; font-size: 12px; font-weight: 700;
+    padding: 4px 10px; border-radius: 999px; max-width: calc(100% - 60px); text-overflow: ellipsis; overflow: hidden; white-space: nowrap;
+  }
+  .shop-photo-dots { position: absolute; bottom: 10px; right: 8px; display: flex; gap: 5px; }
+  .shop-photo-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.6); border: none; padding: 0; cursor: pointer; }
+  .shop-photo-dot.active { background: #fff; }
+  .shop-photo-caption-static { font-size: 12px; color: var(--sub); font-weight: 700; margin: -8px 0 12px; }
+  .shop-card-name { font-size: 18px; font-weight: 800; font-family: "Baloo 2", "Noto Sans TC", sans-serif; color: var(--ink); }
+  .shop-card-tagline { font-size: 12.5px; color: var(--sub); margin-top: 3px; }
+  .shop-card-intro { font-size: 13px; color: var(--ink); line-height: 1.7; margin-top: 12px; }
+  .shop-item-row {
+    display: flex; align-items: center; gap: 12px; background: var(--bg); border-radius: 14px;
+    padding: 10px; margin-top: 10px; cursor: pointer; border: 2px solid var(--ink);
+  }
+  .shop-item-thumb { width: 48px; height: 48px; border-radius: 10px; background-size: cover; background-position: center; flex: none; background-color: var(--line); border: 2px solid var(--ink); }
+  .shop-item-name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+  .shop-item-cost { font-size: 12px; color: var(--purple-dark); font-weight: 800; margin-top: 2px; }
+  .shop-item-back { font-size: 12.5px; color: var(--sub); cursor: pointer; margin-bottom: 10px; }
+  .shop-item-desc { font-size: 13px; color: var(--ink); line-height: 1.7; margin-top: 12px; }
+  .shop-item-cost-big { font-size: 15px; font-weight: 800; color: var(--purple-dark); margin-top: 14px; }
+  .shop-buy-btn {
+    width: 100%; margin-top: 14px; padding: 14px; font-size: 15px; font-weight: 800; font-family: "Baloo 2", "Noto Sans TC", sans-serif;
+    border: 3px solid var(--ink); border-radius: 14px; box-shadow: 4px 4px 0 var(--ink); background: var(--accent); color: white; cursor: pointer;
+  }
+  .shop-buy-btn:disabled { background: #ddd6c6; color: #8a7d6a; box-shadow: none; cursor: not-allowed; }
+  .shop-success { text-align: center; padding: 10px 4px; }
+  .shop-success .emoji { font-size: 40px; }
+  .shop-success h3 { margin: 10px 0 6px; font-size: 17px; font-family: "Baloo 2", "Noto Sans TC", sans-serif; color: var(--ink); }
+  .shop-success p { color: var(--sub); font-size: 13px; line-height: 1.6; margin: 0 0 16px; }
+  .shop-success button {
+    width: 100%; padding: 13px; font-size: 14px; font-weight: 800; border: 3px solid var(--ink); border-radius: 12px; box-shadow: 3px 3px 0 var(--ink);
+    background: var(--accent); color: white; cursor: pointer;
+  }
+
+  /* Backpack */
+  .bag-card { display: flex; gap: 12px; align-items: center; background: var(--card); border-radius: 16px; padding: 12px; margin-bottom: 12px; border: 3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); }
+  .bag-card.used { opacity: 0.55; }
+  .bag-thumb { width: 56px; height: 56px; border-radius: 10px; background-size: cover; background-position: center; flex: none; background-color: var(--line); border: 2px solid var(--ink); }
+  .bag-body { flex: 1; min-width: 0; }
+  .bag-merchant { font-size: 11px; color: var(--sub); }
+  .bag-name { font-size: 14px; font-weight: 800; color: var(--ink); margin-top: 2px; }
+  .bag-status { font-size: 11.5px; font-weight: 700; margin-top: 6px; display: inline-block; padding: 3px 10px; border-radius: 20px; }
+  .bag-status.unused { background: var(--yellow); color: var(--ink); }
+  .bag-status.used { background: #eafaf0; color: var(--done); }
+  .bag-use-btn { flex: none; width: auto; padding: 9px 16px; font-size: 12.5px; font-weight: 800; font-family: "Baloo 2", "Noto Sans TC", sans-serif; border: 3px solid var(--ink); border-radius: 20px; box-shadow: 3px 3px 0 var(--ink); background: var(--accent); color: white; cursor: pointer; }
+  .redeem-input {
+    width: 100%; padding: 12px; font-size: 15px; border: 3px solid var(--ink); border-radius: 12px;
+    margin: 14px 0 8px; box-sizing: border-box; text-align: center; letter-spacing: 1px;
+  }
+  .redeem-error { color: var(--danger); font-size: 12.5px; text-align: center; min-height: 16px; margin-bottom: 8px; }
+
+  /* Partner store directory */
+  .store-card { background: var(--card); border-radius: 16px; overflow: hidden; margin-bottom: 16px; border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); }
+  .store-photo { width: 100%; height: 160px; background-size: cover; background-position: center; background-color: var(--line); border-bottom: 3px solid var(--ink); }
+  .store-body { padding: 16px; }
+  .store-name { font-size: 17px; font-weight: 800; font-family: "Baloo 2", "Noto Sans TC", sans-serif; margin-bottom: 6px; }
+  .store-offer { color: var(--ink); font-size: 13px; font-weight: 700; background: var(--yellow); border: 2px solid var(--ink); border-radius: 10px; padding: 8px 10px; margin-bottom: 10px; }
+  .store-row { font-size: 13px; color: var(--sub); line-height: 1.7; }
+  .store-map-btn { display: inline-block; margin-top: 10px; padding: 9px 16px; background: var(--accent); color: white; border: 2px solid var(--ink); border-radius: 10px; font-size: 13px; font-weight: 700; text-decoration: none; }
+  .stores-empty { color: var(--sub); font-size: 13px; text-align: center; padding: 30px 0; }
+  .fact-box { margin-top: 10px; background: var(--yellow); border: 2px solid var(--ink); border-radius: 12px; padding: 10px 12px; font-size: 13px; color: var(--ink); line-height: 1.6; }
+  .q-block { background: var(--card); border-radius: 16px; padding: 18px; margin-bottom: 14px; border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); }
+  .q-title { font-size: 13px; color: var(--sub); margin-bottom: 6px; }
+  .speak-btn { cursor: pointer; margin-left: 8px; font-size: 14px; opacity: 0.8; }
+  .speak-btn:active { opacity: 1; }
+  .q-text { font-size: 16px; font-weight: 700; line-height: 1.6; margin-bottom: 14px; }
+  .option-btn {
+    display: block; width: 100%; text-align: left; padding: 12px 14px; margin-bottom: 8px;
+    border: 3px solid var(--ink); border-radius: 12px; box-shadow: 3px 3px 0 var(--ink); background: white; font-size: 14px;
+    cursor: pointer; color: var(--ink);
+  }
+  .option-btn:active { transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--ink); }
+  .option-btn.correct { border-color: var(--done); background: #eafaf0; }
+  .option-btn.wrong { border-color: var(--danger); background: #fdeaec; }
+  .option-btn.disabled { pointer-events: none; opacity: 0.6; }
+  .multi-options { margin-bottom: 10px; }
+  .option-check {
+    display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; padding: 12px 14px; margin-bottom: 8px;
+    border: 3px solid var(--ink); border-radius: 12px; box-shadow: 3px 3px 0 var(--ink); background: white; font-size: 14px; color: var(--ink);
+  }
+  .option-check input[type=checkbox] { width: 18px; height: 18px; flex-shrink: 0; }
+  .multi-submit-btn { width: 100%; padding: 12px; font-size: 14px; font-weight: 800; font-family: "Baloo 2", "Noto Sans TC", sans-serif; border: 3px solid var(--ink); border-radius: 12px; box-shadow: 3px 3px 0 var(--ink); background: var(--accent); color: white; cursor: pointer; }
+  .multi-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+  .q-feedback { font-size: 13px; margin-top: 6px; min-height: 18px; }
+  .q-feedback.correct { color: var(--done); font-weight: 700; }
+  .q-feedback.wrong { color: var(--danger); }
+  .q-done-tag { display: inline-block; font-size: 12px; color: var(--done); background: #eafaf0; border: 2px solid var(--done); padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+
+  .fill-row { display: flex; gap: 8px; }
+  .fill-row input { flex: 1; margin-bottom: 0; }
+  .fill-row button { width: auto; padding: 12px 18px; }
+
+  /* Toast / modal for reward unlock */
+  .overlay {
+    /* z-index 高於底部 tabbar(900)／地圖底部彈出卡(950/960)，不然彈窗開著時這些東西還是點得到，
+       導致沒關閉這個彈窗就能切到別的畫面、又跳出別的東西疊在上面 */
+    position: fixed; inset: 0; background: rgba(20,16,28,0.55); display: none;
+    align-items: center; justify-content: center; z-index: 1000; padding: 10px;
+  }
+  /* the overlay centers its child instead of stretching it (align-items: center), so without an
+     explicit width #shop-overlay-card shrinks to fit its content and .shop-card's width:100% then
+     resolves against that shrunk box instead of the full available width — pin it explicitly */
+  #shop-overlay-card { width: 100%; display: flex; justify-content: center; }
+  .overlay.active { display: flex; }
+  .modal { background: white; border-radius: 20px; padding: 28px 24px; text-align: center; max-width: 340px; border: 4px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); }
+  .modal .emoji { font-size: 44px; margin-bottom: 10px; }
+  .modal h3 { margin: 0 0 8px; font-size: 19px; font-family: "Baloo 2", "Noto Sans TC", sans-serif; }
+  .modal p { color: var(--sub); font-size: 14px; margin: 0 0 18px; }
+  .modal .code-box { background: var(--bg); border: 2px solid var(--ink); border-radius: 12px; padding: 12px; font-size: 20px; font-weight: 800; letter-spacing: 2px; margin-bottom: 18px; color: var(--accent-dark); }
+
+  .finale-modal { max-width: 320px; }
+  .finale-badge {
+    display: inline-block; background: var(--purple); color: #fff;
+    font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 800; font-size: 12px;
+    letter-spacing: 0.5px; padding: 6px 14px; border-radius: 999px; margin-bottom: 12px;
+    border: 3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink);
+  }
+  .finale-modal p { white-space: pre-line; }
+  .finale-modal button {
+    width: 100%; padding: 13px; font-size: 14px; font-weight: 800; font-family: "Baloo 2", "Noto Sans TC", sans-serif;
+    border: 3px solid var(--ink); border-radius: 12px; box-shadow: 3px 3px 0 var(--ink);
+    background: var(--accent); color: white; cursor: pointer; margin-top: 4px;
+  }
+
+  .footer-link { text-align: center; margin-top: 20px; }
+  .footer-link a { color: var(--sub); font-size: 12px; cursor: pointer; text-decoration: underline; }
+
+  /* Arrival gate (GPS check before a station unlocks) */
+  .arrive-card { background: var(--card); border-radius: 22px; padding: 32px 24px; text-align: center; margin-top: 16px; border: 4px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); }
+  .arrive-photo {
+    width: 100%; max-width: 320px; height: 170px; margin: 0 auto 14px;
+    border-radius: 16px; background-size: cover; background-position: center;
+    border: 3px solid var(--ink);
+  }
+  .arrive-icon { font-size: 40px; margin-bottom: 6px; }
+  .arrive-name { font-size: 19px; margin: 0 0 10px; font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 700; }
+  .arrive-hint { color: var(--sub); font-size: 13px; line-height: 1.6; margin: 0 0 22px; }
+  .nav-btn {
+    width: 100%; padding: 15px; font-size: 15px; font-weight: 800; font-family: "Baloo 2", "Noto Sans TC", sans-serif;
+    border: 3px solid var(--ink); border-radius: 14px; box-shadow: 4px 4px 0 var(--ink);
+    background: var(--clay); color: white; cursor: pointer; margin-bottom: 16px;
+  }
+  .nav-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+  .arrive-status {
+    font-size: 13px; color: var(--sub); margin-bottom: 16px; padding: 10px; border-radius: 12px;
+    background: var(--bg); border: 2px solid var(--line); min-height: 18px;
+  }
+  .arrive-status.near { color: var(--done); font-weight: 700; background: #eafaf0; border-color: var(--done); }
+  .arrive-status.far { color: var(--sub); }
+  .arrive-status.error { color: var(--danger); }
+  .start-btn {
+    width: 100%; padding: 15px; font-size: 16px; font-weight: 800; font-family: "Baloo 2", "Noto Sans TC", sans-serif;
+    border: 3px solid var(--ink); border-radius: 14px; box-shadow: 4px 4px 0 var(--ink);
+    background: var(--done); color: white; cursor: pointer; transition: opacity .2s;
+  }
+  .start-btn:disabled { background: #ddd6c6; color: #8a7d6a; box-shadow: none; cursor: not-allowed; }
+  .arrive-debug-toggle {
+    margin-top: 20px; font-size: 11px; color: var(--sub); text-align: center; cursor: pointer;
+    opacity: 0.5; user-select: none;
+  }
+  .arrive-debug {
+    margin-top: 10px; padding: 14px; border: 2px dashed var(--purple); border-radius: 14px;
+    background: #f4eeff; text-align: left;
+  }
+  .arrive-debug-title { font-size: 11px; color: var(--purple-dark); font-weight: 700; margin-bottom: 10px; }
+  .arrive-debug-row { display: flex; gap: 8px; margin-bottom: 8px; }
+  .arrive-debug-row:last-child { margin-bottom: 0; }
+  .arrive-debug-row button {
+    flex: 1; width: auto; padding: 9px 6px; font-size: 12px; border: 2px solid var(--ink); border-radius: 10px; box-shadow: 2px 2px 0 var(--ink);
+    background: var(--purple); color: white; cursor: pointer;
+  }
+  .arrive-debug-row input {
+    flex: 1; min-width: 0; padding: 9px 8px; font-size: 12px; border: 2px solid var(--purple); border-radius: 10px; margin-bottom: 0;
+  }
+
+  /* ================= RPG dialogue scene (time-travel station) — bold "dopamine" style ================= */
+  :root {
+    /* kept as separate variables (same names as before) so nothing else needs to change,
+       but now pointed at the bold palette instead of a dark walnut/brass theme */
+    --rpg-void: #241c33;
+    --rpg-walnut: #2c2444;
+    --rpg-walnut-dark: #1a1428;
+    --rpg-mid: #6f6785;
+    --rpg-brass: #ff5d8f;
+    --rpg-brass-bright: #ffcf3f;
+    --rpg-parchment: #ffffff;
+    --rpg-cream: #ffffff;
+    --rpg-ember: #6d3fd4;
+  }
+  #screen-rpg.screen.active { display: block; }
+  .rpg-scene {
+    position: relative; height: 100vh; height: 100dvh; width: 100%; max-width: 560px; margin: 0 auto; overflow: hidden;
+    background: linear-gradient(180deg, var(--rpg-walnut) 0%, var(--rpg-walnut-dark) 100%);
+    font-family: "Noto Sans TC", sans-serif;
+    color: var(--rpg-cream);
+  }
+  /* Real background photo (optional, replaces the CSS illustration when a station provides one) */
+  .rpg-bg-photo {
+    position: absolute; inset: 0; background-size: cover; background-position: center 30%;
+    filter: saturate(1.15) brightness(0.9);
+  }
+  .rpg-bg-photo::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(36,28,51,0.15) 0%, rgba(36,28,51,0.75) 78%, rgba(36,28,51,0.92) 100%);
+  }
+  /* Crossfade layer used when a dialogue step switches the scene to a different background photo */
+  .rpg-bg-photo-fade { opacity: 0; transition: opacity 0.65s ease; z-index: 1; }
+  .rpg-scene.has-photo .rpg-roofline,
+  .rpg-scene.has-photo .rpg-lantern,
+  .rpg-scene.has-photo .rpg-tracks { display: none; }
+
+  /* Character sprites: full-body cutouts standing in the scene, VN-style */
+  .rpg-char-slot {
+    position: absolute; bottom: 0; height: 66%; width: 48%; overflow: visible;
+    background-repeat: no-repeat; background-position: bottom center; background-size: auto 100%;
+    filter: drop-shadow(0 12px 14px rgba(0,0,0,0.4));
+    transition: opacity 0.3s ease, filter 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+  }
+  .rpg-char-slot.left { left: -1%; }
+  .rpg-char-slot.right { right: -1%; }
+  .rpg-char-slot.hidden { opacity: 0; }
+  .rpg-char-slot.dim { opacity: 0.42; filter: brightness(0.7); }
+  .rpg-char-slot.active { filter: drop-shadow(0 12px 16px rgba(0,0,0,0.45)); transform: scale(1.02); }
+
+  .rpg-grain { display: none; }
+  .rpg-vignette { display: none; }
+  .rpg-roofline {
+    position: absolute; left: 0; right: 0; bottom: 38%; height: 90px;
+    background: var(--rpg-walnut-dark);
+    clip-path: polygon(0% 100%, 0% 40%, 10% 0%, 22% 40%, 34% 5%, 46% 40%, 58% 0%, 70% 40%, 82% 8%, 94% 40%, 100% 15%, 100% 100%);
+    opacity: 0.9;
+  }
+  .rpg-lantern {
+    position: absolute; top: 14%; left: 50%; transform: translateX(-50%);
+    width: 10px; height: 14px; border-radius: 3px; background: var(--yellow);
+    box-shadow: 0 0 24px 10px rgba(255,207,63,0.55);
+    animation: rpg-flicker 3.2s ease-in-out infinite;
+  }
+  @keyframes rpg-flicker {
+    0%, 100% { opacity: 1; } 45% { opacity: 0.85; } 50% { opacity: 0.55; } 55% { opacity: 0.9; }
+  }
+  .rpg-tracks {
+    position: absolute; left: 0; right: 0; bottom: 30%; height: 8%;
+    background: repeating-linear-gradient(90deg, var(--rpg-mid) 0 3px, transparent 3px 26px);
+    opacity: 0.5;
+  }
+  .rpg-topbar {
+    position: absolute; top: 0; left: 0; right: 0; z-index: 20;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 46px 16px 0;
+  }
+  .rpg-back {
+    background: #fff; color: var(--ink); font-weight: 700; font-size: 13px;
+    border: 3px solid var(--ink); border-radius: 30px; box-shadow: 3px 3px 0 var(--ink);
+    cursor: pointer; padding: 8px 14px;
+  }
+  .rpg-topbar-right { display: flex; align-items: center; gap: 12px; }
+  .rpg-speak-btn {
+    font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 700; font-size: 13px;
+    cursor: pointer; padding: 8px 14px; border-radius: 30px; white-space: nowrap;
+    background: #fff; color: var(--ink); border: 3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); line-height: 1;
+  }
+  .rpg-speak-btn:active { transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--ink); }
+  .rpg-speak-btn.active { background: var(--yellow); }
+
+  .rpg-voice-overlay {
+    position: absolute; inset: 0; z-index: 60; background: rgba(36,28,51,0.55);
+    display: none; align-items: center; justify-content: center; padding: 24px;
+  }
+  .rpg-voice-overlay.active { display: flex; }
+  .rpg-voice-card {
+    width: 100%; max-width: 320px; background: #fff; border: 4px solid var(--ink);
+    border-radius: 20px; padding: 20px 20px 18px; box-shadow: 6px 6px 0 var(--ink);
+  }
+  .rpg-voice-title { font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 700; font-size: 16px; color: var(--ink); margin-bottom: 14px; }
+  .rpg-voice-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .rpg-voice-label { font-family: "Noto Sans TC", sans-serif; font-weight: 700; font-size: 14px; color: var(--ink); }
+  .rpg-voice-hint { font-family: "Noto Sans TC", sans-serif; font-size: 11.5px; color: var(--sub); line-height: 1.6; margin-top: 12px; }
+  .rpg-voice-close {
+    margin-top: 18px; text-align: center; font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 700; font-size: 13px;
+    color: var(--ink); background: var(--yellow); border: 3px solid var(--ink); border-radius: 20px; box-shadow: 3px 3px 0 var(--ink); padding: 9px; cursor: pointer;
+  }
+  .rpg-switch { position: relative; display: inline-block; width: 46px; height: 28px; flex: none; }
+  .rpg-switch input { opacity: 0; width: 0; height: 0; }
+  .rpg-switch-slider {
+    position: absolute; inset: 0; background: #ddd6c6; border: 2.5px solid var(--ink); border-radius: 20px; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .rpg-switch-slider::before {
+    content: ""; position: absolute; width: 18px; height: 18px; left: 2px; top: 2px;
+    background: #fff; border: 2px solid var(--ink); border-radius: 50%; transition: transform 0.2s;
+  }
+  .rpg-switch input:checked + .rpg-switch-slider { background: var(--done); }
+  .rpg-switch input:checked + .rpg-switch-slider::before { transform: translateX(17px); }
+  .rpg-progress { display: flex; gap: 6px; }
+  .rpg-progress .hole {
+    width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,.35); border: 2px solid rgba(255,255,255,.5);
+    display: inline-block;
+  }
+  .rpg-progress .hole.punched { background: var(--yellow); border-color: var(--ink); }
+
+  .rpg-dialogue-box {
+    position: absolute; left: 16px; right: 16px; bottom: 22px; z-index: 30;
+    max-width: 560px; margin: 0 auto;
+    background: var(--card); border: 3px solid var(--ink); box-shadow: 5px 5px 0 var(--ink);
+    border-radius: 22px; padding: 22px 18px 16px; cursor: pointer;
+  }
+  .rpg-nameplate {
+    display: inline-block; position: absolute; top: -16px; left: 16px;
+    background: var(--yellow); color: var(--ink); font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 800; font-size: 13px;
+    letter-spacing: 0.5px; padding: 6px 16px; border: 3px solid var(--ink); border-radius: 20px;
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+  .rpg-text {
+    font-size: 15.5px; font-weight: 500; line-height: 1.75; color: var(--ink); min-height: 3.4em;
+    margin-top: 6px; white-space: pre-wrap;
+  }
+  .rpg-continue {
+    display: none; text-align: right; font-weight: 800; color: var(--accent-dark); font-size: 12px;
+    animation: rpg-bounce 1.3s ease-in-out infinite;
+  }
+  /* 答錯提示：獨立顯示在選項下方，不會蓋掉上面的題目文字，玩家隨時能回頭看題目 */
+  .rpg-wrong-hint {
+    display: none; margin-top: 10px; padding: 10px 12px; font-size: 13.5px; line-height: 1.6;
+    color: var(--danger); background: #fdeaec; border: 2px solid var(--danger); border-radius: 12px;
+  }
+  .rpg-wrong-hint.active { display: block; }
+  @keyframes rpg-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+
+  /* Centered on-screen guidance banner, e.g. "請前往一樓前站廣場" */
+  .rpg-notice-overlay {
+    position: absolute; inset: 0; z-index: 33; display: none;
+    align-items: center; justify-content: center; text-align: center;
+    background: rgba(36,28,51,0.55); cursor: pointer; padding: 0 10px;
+  }
+  .rpg-notice-overlay.active { display: flex; }
+  .rpg-notice-card {
+    background: var(--yellow);
+    color: var(--ink); font-family: "Noto Sans TC", sans-serif; font-weight: 700;
+    font-size: 17px; line-height: 1.6; padding: 20px 22px 18px; border: 4px solid var(--ink); border-radius: 24px;
+    box-shadow: 6px 6px 0 var(--ink); max-width: 400px; text-align: left;
+  }
+  .rpg-notice-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--ink); color: #fff; font-family: "Baloo 2", "Noto Sans TC", sans-serif;
+    font-weight: 800; font-size: 13px; padding: 7px 14px 7px 10px; border-radius: 999px; margin-bottom: 14px;
+  }
+  .rpg-notice-badge svg { width: 16px; height: 16px; flex: none; }
+  .rpg-notice-heading {
+    font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 800; font-size: 19px; line-height: 1.55;
+    color: var(--ink); margin-bottom: 12px;
+  }
+  .rpg-notice-heading mark {
+    background: #fff; color: var(--ink); padding: 1px 7px; border-radius: 5px;
+    box-decoration-break: clone; -webkit-box-decoration-break: clone;
+  }
+  .rpg-notice-line { margin-bottom: 2px; }
+  .rpg-notice-subline {
+    display: flex; align-items: center; gap: 6px; margin-top: 4px;
+    font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 800; font-size: 17px; color: var(--ink);
+  }
+  .rpg-notice-subline svg { width: 19px; height: 19px; flex: none; }
+  .rpg-notice-warn {
+    display: flex; align-items: flex-start; gap: 9px; background: #fff;
+    border: 2px solid var(--ink); border-radius: 14px; padding: 10px 14px; margin-bottom: 4px;
+    font-family: "Noto Sans TC", sans-serif; font-size: 13.5px; font-weight: 700; color: var(--ink); line-height: 1.6;
+  }
+  .rpg-notice-warn svg { width: 20px; height: 20px; flex: none; margin-top: 1px; }
+  .rpg-notice-hint {
+    margin-top: 16px; display: flex; align-items: center; justify-content: center; gap: 4px;
+    font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 800; font-size: 14px; color: var(--ink);
+    background: #fff; border: 3px solid var(--ink); border-radius: 999px; padding: 12px; box-shadow: 3px 3px 0 var(--ink);
+  }
+  .rpg-notice-hint-arrow { font-size: 17px; line-height: 1; }
+
+  /* Shared pill badge used at the top of the three RPG popup cards (notice / knowledge / collection) */
+  .rpg-card-badge {
+    display: inline-block; background: var(--ink); color: #fff;
+    font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 800; font-size: 12px;
+    letter-spacing: 0.5px; padding: 6px 14px; border-radius: 999px; margin-bottom: 12px;
+  }
+  .rpg-card-badge.corner {
+    position: absolute; top: 12px; right: 12px; z-index: 1; margin-bottom: 0;
+    border: 3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink);
+  }
+  .rpg-card-badge.corner.discover { background: var(--purple); }
+  .rpg-gps-overlay {
+    position: absolute; inset: 0; z-index: 33; display: none;
+    align-items: center; justify-content: center; text-align: center;
+    background: rgba(36,28,51,0.55); padding: 0 32px;
+  }
+  .rpg-gps-overlay.active { display: flex; }
+  .rpg-gps-status { margin-top: 12px; font-family: "Noto Sans TC", sans-serif; font-size: 13px; color: var(--ink); min-height: 18px; line-height: 1.6; }
+  .rpg-gps-retry-btn {
+    width: 100%; margin-top: 14px; padding: 13px; font-family: "Baloo 2", "Noto Sans TC", sans-serif;
+    font-weight: 800; font-size: 15px; border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--ink);
+    border-radius: 14px; cursor: pointer;
+    background: var(--accent); color: white;
+  }
+  .rpg-gps-retry-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+  .rpg-gps-retry-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+  .rpg-gps-test-btn {
+    width: 100%; margin-top: 10px; padding: 9px; font-family: "Noto Sans TC", sans-serif;
+    font-weight: 700; font-size: 11px; border: 2px dashed var(--purple); border-radius: 12px; cursor: pointer;
+    background: #f4eeff; color: var(--purple-dark);
+  }
+  .img-loading-hint {
+    font-family: "Noto Sans TC", sans-serif; font-size: 12.5px; color: var(--sub); text-align: center;
+    padding: 28px 0; margin-top: 10px; background: var(--bg); border-radius: 8px;
+  }
+  .rpg-notice-img { display: block; width: 100%; max-height: 34vh; object-fit: contain; margin-top: 14px; border-radius: 14px; border: 2px solid var(--ink); background: rgba(0,0,0,0.08); }
+
+  /* Polaroid-style old-photo popup shown mid-dialogue */
+  .rpg-photo-overlay {
+    position: absolute; left: 50%; bottom: 190px; transform: translateX(-50%) rotate(-2deg);
+    z-index: 32; display: none; width: min(78%, 320px);
+    background: #fff; padding: 10px 10px 16px; border: 4px solid var(--ink); border-radius: 4px;
+    box-shadow: 6px 6px 0 var(--purple-dark);
+  }
+  .rpg-photo-overlay.active { display: block; }
+  .rpg-photo-overlay img { width: 100%; display: block; border-radius: 2px; }
+  .rpg-photo-overlay .rpg-photo-cap {
+    margin-top: 8px; font-family: "Noto Sans TC", sans-serif; font-weight: 700; font-size: 12px; color: var(--ink); text-align: center;
+  }
+
+  /* Knowledge card: a dense factual/numeric aside gets its own card instead of a spoken line */
+  .rpg-knowledge-overlay {
+    position: absolute; inset: 0; z-index: 33; display: none;
+    align-items: center; justify-content: center; background: rgba(36,28,51,0.55); cursor: pointer; padding: 0 10px;
+  }
+  .rpg-knowledge-overlay.active { display: flex; }
+  /* Default (has a photo): "探索發現" — white card, purple border, image up top with a corner badge */
+  .rpg-knowledge-card {
+    position: relative;
+    width: 100%; max-width: 400px; background: #fff; border: 4px solid var(--purple); border-radius: 22px; overflow: hidden;
+    box-shadow: 6px 6px 0 var(--purple-dark); text-align: left;
+  }
+  .rpg-knowledge-img { width: 100%; max-height: 42vh; object-fit: contain; display: block; background: #fff; }
+  .rpg-knowledge-body { padding: 16px 18px 4px; }
+  .rpg-knowledge-title {
+    font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 800; font-size: 17px; color: var(--purple-dark); margin-bottom: 8px;
+  }
+  .rpg-knowledge-text { font-family: "Noto Sans TC", sans-serif; font-size: 13.5px; line-height: 1.7; color: var(--ink); white-space: pre-line; }
+  .rpg-knowledge-hint {
+    text-align: center; padding: 10px 18px 16px; font-family: "Noto Sans TC", sans-serif; font-weight: 700; font-size: 12.5px;
+    color: var(--purple-dark);
+  }
+  /* "小知識" — a lighter/quicker fact than a named collectible; flat blue card, pill hint button.
+     A photo is still allowed here (unlike the name might suggest) — the badge/style is driven by
+     whether the step has a title (→ 探索發現), not by whether it has a photo. */
+  .rpg-knowledge-card.brief {
+    background: var(--clay); border-color: var(--ink); box-shadow: 6px 6px 0 var(--ink);
+  }
+  /* extra top padding clears the corner badge when there's no photo above the body to sit on instead */
+  .rpg-knowledge-card.brief .rpg-knowledge-body { padding: 56px 18px 6px; }
+  .rpg-knowledge-card.brief .rpg-knowledge-title { display: none; }
+  .rpg-knowledge-card.brief .rpg-knowledge-text { color: #fff; font-weight: 700; font-size: 14.5px; line-height: 1.75; }
+  .rpg-knowledge-card.brief .rpg-knowledge-hint {
+    text-align: center; padding: 14px 18px 18px; color: var(--ink);
+  }
+  .rpg-knowledge-card.brief .rpg-knowledge-hint span {
+    display: inline-block; background: var(--ink); color: #fff; padding: 9px 20px; border-radius: 999px;
+  }
+
+  /* Story card: the guide's own memory/recollection — one striking photo and a short,
+     large-type line, deliberately lighter on words than the knowledge/collection cards */
+  .rpg-story-overlay {
+    position: absolute; inset: 0; z-index: 33; display: none;
+    align-items: center; justify-content: center; background: rgba(36,28,51,0.55); cursor: pointer; padding: 0 10px;
+  }
+  .rpg-story-overlay.active { display: flex; }
+  .rpg-story-card {
+    position: relative; width: 100%; max-width: 400px; background: #fdf6ec;
+    border: 4px solid var(--sepia); border-radius: 22px; overflow: hidden;
+    box-shadow: 6px 6px 0 var(--sepia-dark); text-align: center;
+  }
+  .rpg-card-badge.story {
+    position: absolute; top: 12px; left: 12px; z-index: 1; margin-bottom: 0;
+    background: var(--sepia); border: 3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink);
+  }
+  .rpg-story-img { width: 100%; max-height: 40vh; object-fit: cover; display: block; filter: sepia(0.35) saturate(1.05); }
+  .rpg-story-text {
+    font-family: "Noto Serif TC", serif; font-weight: 600; font-size: 17px; line-height: 1.7;
+    color: var(--sepia-dark); padding: 18px 22px 6px; white-space: pre-line; text-align: left;
+  }
+  .rpg-story-hint {
+    font-family: "Noto Sans TC", sans-serif; font-weight: 700; font-size: 12px;
+    color: var(--sepia); padding: 8px 18px 16px;
+  }
+
+  .rpg-choices { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+  .rpg-pending { font-family: "Noto Sans TC", sans-serif; font-size: 13px; color: var(--sub); text-align: center; }
+  .ticket-choice {
+    position: relative; text-align: left; font-family: "Noto Sans TC", sans-serif; font-weight: 700;
+    background: #fff; color: var(--ink); border: 3px solid var(--ink); border-radius: 14px;
+    padding: 12px 16px; font-size: 14.5px; cursor: pointer;
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  .ticket-choice::before { content: none; }
+  .ticket-choice:active { transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--ink); }
+  .ticket-choice.selected { background: var(--yellow); }
+  .ticket-choice.correct { background: #eafaf0; border-color: var(--done); }
+  .ticket-choice.wrong { background: #fdeaec; border-color: var(--danger); }
+  .ticket-choice:disabled { opacity: 0.6; cursor: not-allowed; }
+  .ticket-choice.selected:disabled, .ticket-choice.wrong:disabled { opacity: 1; }
+
+  .rpg-multi-options { margin-bottom: 4px; }
+  .rpg-option-check {
+    display: flex; align-items: center; gap: 10px; width: 100%; text-align: left;
+    font-family: "Noto Sans TC", sans-serif; font-weight: 700; background: #fff; color: var(--ink);
+    border: 3px solid var(--ink); border-radius: 14px; padding: 12px 16px; margin-bottom: 8px; font-size: 14.5px;
+    box-shadow: 4px 4px 0 var(--ink); cursor: pointer;
+  }
+  .rpg-option-check.checked { background: var(--yellow); }
+  .rpg-option-check input[type=checkbox] { width: 18px; height: 18px; flex-shrink: 0; }
+  .rpg-multi-submit-btn {
+    width: 100%; padding: 12px; font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 800; font-size: 14px;
+    border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); border-radius: 14px; cursor: pointer;
+    background: var(--accent); color: white;
+  }
+  .rpg-multi-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  .rpg-find-btn {
+    display: none; width: 100%; margin-top: 10px; padding: 13px; font-family: "Baloo 2", "Noto Sans TC", sans-serif;
+    font-weight: 800; font-size: 15px; border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--ink);
+    border-radius: 14px; cursor: pointer;
+    background: var(--yellow); color: var(--ink);
+  }
+  .rpg-find-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+
+  .ticket-fill { display: flex; gap: 8px; margin-top: 12px; }
+  .ticket-fill input {
+    flex: 1; padding: 12px 14px; font-size: 15px; border-radius: 12px; border: 3px solid var(--ink); margin-bottom: 0;
+    background: #fff; color: var(--ink); font-family: "Noto Sans TC", sans-serif;
+  }
+  .ticket-fill input:focus { outline: 2px solid var(--accent); }
+  .ticket-fill button {
+    flex: none; width: auto; padding: 12px 16px; border: 3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); border-radius: 12px; background: var(--accent);
+    color: white; font-weight: 800; cursor: pointer; font-family: "Baloo 2", "Noto Sans TC", sans-serif;
+  }
+
+  /* ================= Map screen: RPG world-map style level select ================= */
+  #screen-map.screen.active { display: block; }
+  .map-world {
+    height: 100vh; height: 100dvh; display: flex; flex-direction: column;
+    background: var(--bg);
+    font-family: "Baloo 2", "Noto Sans TC", sans-serif; color: var(--ink);
+    max-width: 560px; margin: 0 auto;
+  }
+  .map-grain { display: none; }
+  .map-topbar {
+    position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 16px 12px;
+    background: var(--card); border-bottom: 3px solid var(--ink);
+  }
+  .map-title { font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 700; font-size: 16px; letter-spacing: 0.5px; color: var(--ink); }
+  .map-subtitle { font-family: "Noto Sans TC", sans-serif; font-size: 10.5px; color: var(--sub); margin-top: 2px; }
+  .map-topbar-right { display: flex; align-items: center; gap: 10px; }
+  .map-username {
+    font-family: "Noto Sans TC", sans-serif; font-size: 12px; font-weight: 700; color: var(--sub);
+    max-width: 88px; overflow-wrap: break-word; text-align: right; line-height: 1.3;
+  }
+  .map-count { font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-size: 16px; font-weight: 700; color: var(--accent-dark); }
+  .map-count-total { font-size: 10.5px; opacity: 0.6; margin-left: 2px; }
+  .map-logout {
+    display: flex; align-items: center; gap: 4px;
+    font-family: "Noto Sans TC", sans-serif; font-weight: 700; font-size: 12px; color: var(--ink);
+    cursor: pointer; padding: 6px 12px; border-radius: 20px;
+    background: #fff; border: 2.5px solid var(--ink); box-shadow: 2px 2px 0 var(--ink);
+  }
+  .map-logout:active { transform: translate(1px, 1px); box-shadow: 1px 1px 0 var(--ink); }
+
+  .map-scroll {
+    position: relative; z-index: 2; flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin; scrollbar-color: var(--accent) transparent;
+  }
+  .map-scroll::-webkit-scrollbar { width: 6px; }
+  .map-scroll::-webkit-scrollbar-track { background: transparent; }
+  .map-scroll::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; opacity: 0.5; }
+  .map-scroll::-webkit-scrollbar-button { display: none; height: 0; width: 0; }
+  .map-scroll { display: flex; flex-direction: column; }
+
+  /* Real interactive map (Leaflet) replacing the old card list */
+  .station-map-wrap { position: relative; flex: 1; min-height: 380px; }
+  #stationMap { position: absolute; inset: 0; }
+  .leaflet-container { background: var(--bg); font-family: "Noto Sans TC", sans-serif; }
+  .nearest-chip {
+    position: absolute; left: 14px; right: 14px; top: 14px; z-index: 800;
+    background: var(--card); border: 2px solid var(--ink); border-radius: 13px; padding: 7px 11px;
+    display: flex; align-items: center; gap: 8px; box-shadow: 3px 3px 0 var(--ink); cursor: pointer;
+  }
+  .nearest-chip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex: none; }
+  .nearest-chip .label { font-family: "Noto Sans TC", sans-serif; font-size: 8.5px; color: var(--sub); font-weight: 700; line-height: 1.3; }
+  .nearest-chip .name { font-weight: 800; font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-size: 12px; line-height: 1.3; }
+  .nearest-chip .dist { margin-left: auto; font-weight: 800; color: var(--accent-dark); font-size: 11px; }
+  .me-dot { width: 16px; height: 16px; border-radius: 50%; background: var(--clay); border: 3px solid #fff; box-shadow: 0 0 0 4px rgba(58,160,255,.3); }
+
+  /* 平常隱藏，玩家把地圖滑走/縮放後才會浮現——出現的時機本身就在提示「這是要帶你回去剛才畫面」，
+     而且是在滑動結束後才顯示（不是滑動途中），手指滑地圖時不會不小心先點到它 */
+  .map-recenter-btn {
+    display: none; position: absolute; left: 50%; bottom: 88px; transform: translateX(-50%); z-index: 800;
+    align-items: center; gap: 6px; padding: 9px 16px; border-radius: 999px;
+    background: var(--ink); border: 2.5px solid var(--ink); box-shadow: 3px 3px 0 rgba(36,28,51,0.35);
+    color: #fff; font-family: "Noto Sans TC", sans-serif; font-weight: 700; font-size: 12.5px; cursor: pointer;
+  }
+  .map-recenter-btn.show { display: flex; }
+  .map-recenter-btn svg { width: 15px; height: 15px; flex: none; }
+  .map-recenter-btn:active { transform: translateX(-50%) translateY(1px); }
+
+  .map-pin-wrap { position: relative; width: 38px; height: 48px; }
+  .map-pin-ring {
+    position: absolute; left: 50%; bottom: 2px; width: 14px; height: 14px; border-radius: 50%;
+    transform: translateX(-50%); background: rgba(255,93,143,0.35); display: none;
+  }
+  .map-pin-wrap.nearest .map-pin-ring { display: block; animation: mapPinRing 1.4s ease-out infinite; }
+  @keyframes mapPinRing { 0% { transform: translateX(-50%) scale(0.6); opacity: 0.9; } 100% { transform: translateX(-50%) scale(2.6); opacity: 0; } }
+  .map-pin {
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 36px; height: 36px; border-radius: 50%; border: 3px solid var(--ink); box-shadow: 2px 3px 0 var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 800; color: #fff; font-size: 13px;
+  }
+  .map-pin-tail {
+    position: absolute; left: 50%; bottom: 2px; transform: translateX(-50%);
+    width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid var(--ink);
+  }
+  .map-pin-wrap.locked .map-pin { background: #cfc6b0; }
+  .map-pin-wrap.done .map-pin { background: var(--done); }
+  .map-pin-wrap.nearest .map-pin { background: var(--accent); animation: mapPinBob 1.4s ease-in-out infinite; }
+  @keyframes mapPinBob { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-4px); } }
+
+  /* bottom sheet for station detail, opened by tapping a map pin */
+  .map-sheet-backdrop {
+    position: fixed; inset: 0; background: rgba(36,28,51,0.5); z-index: 950; opacity: 0; pointer-events: none;
+    transition: opacity .2s;
+  }
+  .map-sheet-backdrop.active { opacity: 1; pointer-events: auto; }
+  .map-sheet {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 960; max-width: 560px; margin: 0 auto;
+    background: var(--card); border-radius: 26px 26px 0 0; border-top: 4px solid var(--ink); box-shadow: 0 -6px 0 var(--ink);
+    transform: translateY(105%); transition: transform .28s cubic-bezier(.2,.8,.3,1); max-height: 78vh; overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .map-sheet.active { transform: translateY(0); }
+  .map-sheet-handle { width: 40px; height: 5px; border-radius: 3px; background: var(--ink); opacity: .2; margin: 10px auto 2px; }
+  .map-sheet-close {
+    position: absolute; top: 14px; right: 14px; width: 30px; height: 30px; border-radius: 50%;
+    background: rgba(0,0,0,0.4); color: #fff; border: none; font-size: 15px; cursor: pointer; z-index: 2; padding: 0;
+  }
+  .map-sheet-photo { width: 100%; height: 160px; background-size: cover; background-position: center; background-color: var(--line); }
+  .map-sheet-body { padding: 16px 16px 22px; overflow-y: auto; }
+  .map-sheet-no { font-family: "Noto Sans TC", sans-serif; font-size: 10.5px; font-weight: 800; color: var(--sub); letter-spacing: 1px; }
+  .map-sheet-name { font-weight: 800; font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-size: 19px; margin-top: 3px; }
+  .map-sheet-addr { font-family: "Noto Sans TC", sans-serif; font-size: 12px; color: var(--sub); margin-top: 6px; }
+  .map-sheet-dist { font-family: "Noto Sans TC", sans-serif; font-weight: 700; font-size: 12px; color: var(--accent-dark); margin-top: 4px; display: none; }
+  .map-sheet-status { display: inline-flex; align-items: center; gap: 5px; margin-top: 10px; font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 20px; }
+  .map-sheet-nav-btn { margin-top: 16px; margin-bottom: 0; }
+  .map-sheet-status.done { background: #eafaf0; color: var(--done); }
+  .map-sheet-status.locked { background: var(--bg); color: var(--sub); border: 1.5px solid var(--line); }
+  .map-sheet-btn { width: 100%; margin-top: 16px; padding: 14px; border-radius: 16px; border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); cursor: pointer; font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 800; font-size: 15px; background: var(--accent); color: #fff; }
+  .map-sheet-devreset {
+    margin-top: 12px; padding: 8px 10px; border: 2px dashed var(--purple); border-radius: 10px;
+    background: #f4eeff; font-size: 11.5px; color: var(--purple-dark); text-align: center;
+  }
+  .map-sheet-devreset a { color: var(--purple-dark); text-decoration: underline; cursor: pointer; font-weight: 700; }
+
+  /* Single-column "field journal" card: a landscape photo blending into an aged-paper
+     panel carrying a hand-stamped badge and typewriter notes. Locked stations without a
+     photo yet fall back to a plain card-back on the photo side. */
+  .card-grid { display: grid; grid-template-columns: 1fr; gap: 16px; padding: 14px; }
+  .collect-card {
+    position: relative; aspect-ratio: 4 / 3; border-radius: 16px; overflow: hidden; cursor: pointer;
+    border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--ink);
+    transition: transform 0.1s ease;
+  }
+  .collect-card:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+
+  .collect-card .card-img {
+    position: absolute; inset: 0; background-size: cover; background-position: center 30%;
+    filter: saturate(1.05) brightness(0.96) contrast(1.02);
+  }
+  .collect-card .card-img.grayscale {
+    filter: grayscale(1) contrast(1.02) brightness(1.05);
+  }
+  .collect-card .card-img.grayscale::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(160deg, rgba(124,152,133,0.5), rgba(201,138,94,0.55));
+    mix-blend-mode: color;
+  }
+  .collect-card .card-lock {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; opacity: 0.45;
+    background:
+      repeating-linear-gradient(135deg, rgba(124,152,133,0.10) 0 8px, transparent 8px 16px),
+      linear-gradient(160deg, #e4ddc9 0%, #d6cdb4 100%);
+  }
+
+  /* compact caption strip along the bottom of the photo, instead of a large side panel */
+  .card-bottom {
+    position: absolute; left: 0; right: 0; bottom: 0; z-index: 1;
+    display: flex; align-items: center; gap: 9px;
+    padding: 8px 10px; background: var(--card); border-top: 3px solid var(--ink);
+  }
+  .card-stamp { width: 34px; height: 34px; flex: none; }
+  .card-stamp svg { width: 100%; height: 100%; display: block; }
+  .card-notes { min-width: 0; flex: 1; }
+  .card-no { font-family: "Noto Sans TC", sans-serif; font-weight: 700; font-size: 9px; letter-spacing: 1.5px; opacity: 0.55; }
+  .card-name {
+    font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 700; font-size: 12.5px; line-height: 1.3;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .card-status { font-family: "Noto Sans TC", sans-serif; font-weight: 600; font-size: 9.5px; margin-top: 1px; opacity: 0.7; }
+  .collect-card.done { border-color: var(--ink); }
+  .collect-card .card-badge {
+    position: absolute; top: 8px; right: 8px; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--yellow); color: var(--ink); font-size: 11px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center; border: 2px solid var(--ink);
+    z-index: 2;
+  }
+
+  .map-bottom { padding: 10px 20px 34px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .map-balance-chip {
+    display: inline-flex; align-items: center; gap: 8px; background: var(--yellow); border: 3px solid var(--ink);
+    border-radius: 24px; padding: 8px 16px; font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 700; font-size: 13px; color: var(--ink);
+    cursor: pointer; box-shadow: 3px 3px 0 var(--ink);
+  }
+  .map-balance-chip:active { transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--ink); }
+  .map-balance-chip .num { font-weight: 800; color: var(--purple-dark); font-size: 15px; }
+  .map-btn-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .map-wallet-btn {
+    width: auto; background: var(--accent); border: 3px solid var(--ink); color: white;
+    font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 700; font-size: 13px; padding: 10px 22px; border-radius: 24px; cursor: pointer;
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+  .map-wallet-btn:active { transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--ink); }
+  .map-shop-btn {
+    width: auto; background: var(--clay); border: 3px solid var(--ink); color: white;
+    font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 700; font-size: 13px; padding: 10px 22px; border-radius: 24px; cursor: pointer;
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+  .map-shop-btn:active { transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--ink); }
