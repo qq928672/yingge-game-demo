@@ -8,6 +8,7 @@
     --clay: #3aa0ff;
     --clay-dark: #1b7fe0;
     --done: #33c281;
+    --done-dark: #22945f;
     --line: #e7dfc9;
     --danger: #d6455a;
     --yellow: #ffcf3f;
@@ -97,13 +98,8 @@
   .login-card h2 { margin: 0 0 6px; font-size: 22px; font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 700; }
   .login-card p.desc { color: var(--sub); font-size: 13px; margin: 0 0 26px; white-space: nowrap; }
   .login-card p.desc strong { color: var(--ink); }
-  .field-label {
-    display: block; text-align: left; font-size: 11.5px; font-weight: 800; color: var(--sepia-dark);
-    letter-spacing: 1px; margin: 0 0 6px 2px;
-  }
-  #code-input {
-    font-family: ui-monospace, "SFMono-Regular", Menlo, monospace; letter-spacing: 1px;
-  }
+  .google-signin-wrap { display: flex; justify-content: center; margin-bottom: 8px; min-height: 40px; }
+  .google-signin-hint { color: var(--sub); font-size: 11px; margin: 0 0 16px; }
   .login-links { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 360px; }
   .stores-entry-link, .about-entry-link {
     color: var(--ink); font-size: 13.5px; font-weight: 700; font-family: "Baloo 2", "Noto Sans TC", sans-serif;
@@ -318,8 +314,24 @@
   .shop-item-thumb { width: 48px; height: 48px; border-radius: 10px; background-size: cover; background-position: center; flex: none; background-color: var(--line); border: 2px solid var(--ink); }
   .shop-item-name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
   .shop-item-cost { font-size: 12px; color: var(--purple-dark); font-weight: 800; margin-top: 2px; }
-  .shop-item-back { font-size: 12.5px; color: var(--sub); cursor: pointer; margin-bottom: 10px; }
+  .shop-item-back {
+    display: inline-flex; align-items: center; gap: 3px; font-size: 12.5px; font-weight: 700;
+    color: var(--ink); cursor: pointer; margin-bottom: 12px; background: var(--card);
+    border: 2.5px solid var(--ink); border-radius: 20px; box-shadow: 2px 2px 0 var(--ink);
+    padding: 6px 12px 6px 10px; transition: transform 0.1s;
+  }
+  .shop-item-back:active { transform: translate(1px, 1px); box-shadow: 1px 1px 0 var(--ink); }
   .shop-item-desc { font-size: 13px; color: var(--ink); line-height: 1.7; margin-top: 12px; }
+  .shop-item-notes {
+    margin-top: 12px; padding: 10px 12px; background: var(--bg); border: 2px solid var(--line); border-radius: 12px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .shop-item-note { font-size: 12.5px; color: var(--ink); line-height: 1.6; }
+  .shop-item-note-label { display: block; font-weight: 800; font-size: 11.5px; color: var(--sub); margin-bottom: 2px; }
+  .shop-item-form-link {
+    display: block; text-align: center; margin-top: 2px; padding: 9px; font-size: 12.5px; font-weight: 800;
+    color: var(--accent-dark); background: #fff; border: 2px solid var(--accent-dark); border-radius: 10px; text-decoration: none;
+  }
   .shop-item-cost-big { font-size: 15px; font-weight: 800; color: var(--purple-dark); margin-top: 14px; }
   .shop-buy-btn {
     width: 100%; margin-top: 14px; padding: 14px; font-size: 15px; font-weight: 800; font-family: "Baloo 2", "Noto Sans TC", sans-serif;
@@ -336,7 +348,8 @@
   }
 
   /* Backpack */
-  .bag-card { display: flex; gap: 12px; align-items: center; background: var(--card); border-radius: 16px; padding: 12px; margin-bottom: 12px; border: 3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); }
+  .bag-card { display: flex; gap: 12px; align-items: center; background: var(--card); border-radius: 16px; padding: 12px; margin-bottom: 12px; border: 3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); cursor: pointer; transition: transform 0.1s; }
+  .bag-card:active { transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--ink); }
   .bag-card.used { opacity: 0.55; }
   .bag-thumb { width: 56px; height: 56px; border-radius: 10px; background-size: cover; background-position: center; flex: none; background-color: var(--line); border: 2px solid var(--ink); }
   .bag-body { flex: 1; min-width: 0; }
@@ -345,7 +358,10 @@
   .bag-status { font-size: 11.5px; font-weight: 700; margin-top: 6px; display: inline-block; padding: 3px 10px; border-radius: 20px; }
   .bag-status.unused { background: var(--yellow); color: var(--ink); }
   .bag-status.used { background: #eafaf0; color: var(--done); }
-  .bag-use-btn { flex: none; width: auto; padding: 9px 16px; font-size: 12.5px; font-weight: 800; font-family: "Baloo 2", "Noto Sans TC", sans-serif; border: 3px solid var(--ink); border-radius: 20px; box-shadow: 3px 3px 0 var(--ink); background: var(--accent); color: white; cursor: pointer; }
+
+  /* 背包兌換券詳情：重用「關於本遊戲」的車票樣式（.ticket / .ticket-head / .ticket-field 等），
+     只在 shop-overlay 裡顯示時稍微收窄，跟其他彈窗卡片的寬度感覺一致 */
+  .voucher-ticket { max-width: 340px; }
   .redeem-input {
     width: 100%; padding: 12px; font-size: 15px; border: 3px solid var(--ink); border-radius: 12px;
     margin: 14px 0 8px; box-sizing: border-box; text-align: center; letter-spacing: 1px;
@@ -410,6 +426,14 @@
   .modal h3 { margin: 0 0 8px; font-size: 19px; font-family: "Baloo 2", "Noto Sans TC", sans-serif; }
   .modal p { color: var(--sub); font-size: 14px; margin: 0 0 18px; }
   .modal .code-box { background: var(--bg); border: 2px solid var(--ink); border-radius: 12px; padding: 12px; font-size: 20px; font-weight: 800; letter-spacing: 2px; margin-bottom: 18px; color: var(--accent-dark); }
+
+  .resume-modal { max-width: 320px; }
+  .resume-modal button {
+    width: 100%; padding: 13px; font-size: 14px; font-weight: 800; font-family: "Baloo 2", "Noto Sans TC", sans-serif;
+    border: 3px solid var(--ink); border-radius: 12px; box-shadow: 3px 3px 0 var(--ink);
+    background: var(--accent); color: white; cursor: pointer; margin-top: 4px;
+  }
+  .resume-modal button.secondary { background: white; color: var(--ink); margin-top: 10px; }
 
   .finale-modal { max-width: 320px; }
   .finale-badge {
@@ -687,7 +711,7 @@
     position: absolute; top: 12px; right: 12px; z-index: 1; margin-bottom: 0;
     border: 3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink);
   }
-  .rpg-card-badge.corner.discover { background: var(--purple); }
+  .rpg-card-badge.corner.clue { background: var(--clay); }
   .rpg-gps-overlay {
     position: absolute; inset: 0; z-index: 33; display: none;
     align-items: center; justify-content: center; text-align: center;
@@ -713,17 +737,7 @@
     padding: 28px 0; margin-top: 10px; background: var(--bg); border-radius: 8px;
   }
   .rpg-notice-img { display: block; width: 100%; max-height: 34vh; object-fit: contain; margin-top: 14px; border-radius: 14px; border: 2px solid var(--ink); background: rgba(0,0,0,0.08); }
-
-  /* Polaroid-style old-photo popup shown mid-dialogue */
-  .rpg-photo-overlay {
-    position: absolute; left: 50%; bottom: 190px; transform: translateX(-50%) rotate(-2deg);
-    z-index: 32; display: none; width: min(78%, 320px);
-    background: #fff; padding: 10px 10px 16px; border: 4px solid var(--ink); border-radius: 4px;
-    box-shadow: 6px 6px 0 var(--purple-dark);
-  }
-  .rpg-photo-overlay.active { display: block; }
-  .rpg-photo-overlay img { width: 100%; display: block; border-radius: 2px; }
-  .rpg-photo-overlay .rpg-photo-cap {
+  .rpg-notice-cap {
     margin-top: 8px; font-family: "Noto Sans TC", sans-serif; font-weight: 700; font-size: 12px; color: var(--ink); text-align: center;
   }
 
@@ -740,6 +754,7 @@
     box-shadow: 6px 6px 0 var(--purple-dark); text-align: left;
   }
   .rpg-knowledge-img { width: 100%; max-height: 42vh; object-fit: contain; display: block; background: #fff; }
+  .rpg-knowledge-img.vintage { filter: sepia(0.5) saturate(1.15) contrast(1.05); }
   .rpg-knowledge-body { padding: 16px 18px 4px; }
   .rpg-knowledge-title {
     font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 800; font-size: 17px; color: var(--purple-dark); margin-bottom: 8px;
@@ -748,6 +763,36 @@
   .rpg-knowledge-hint {
     text-align: center; padding: 10px 18px 16px; font-family: "Noto Sans TC", sans-serif; font-weight: 700; font-size: 12.5px;
     color: var(--purple-dark);
+  }
+  /* 「地方故事」——原本叫「探索發現」，跟「線索卡」（藍）、「小知識」（藍底）區分開來 */
+  .rpg-knowledge-card.local-story-green {
+    --story-bg: #faf8ef;
+    --story-border: #9eafa0;
+    --story-accent: #365d50;
+    --story-heading: #304b40;
+    --story-ink: #38332f;
+
+    background: var(--story-bg);
+    border: 2px solid var(--story-border);
+    border-radius: 22px;
+    box-shadow: 0 10px 28px rgba(45, 31, 58, .18);
+  }
+  /* 右上角的「地方故事」標籤 */
+  .rpg-knowledge-card.local-story-green .rpg-card-badge.corner {
+    background: var(--story-accent);
+    color: #fff;
+    border: 1px solid var(--story-accent);
+    box-shadow: 0 2px 7px rgba(45, 31, 58, .13);
+  }
+  .rpg-knowledge-card.local-story-green .rpg-knowledge-title,
+  .rpg-knowledge-card.local-story-green .rpg-knowledge-hint {
+    color: var(--story-heading);
+  }
+  .rpg-knowledge-card.local-story-green .rpg-knowledge-text {
+    color: var(--story-ink);
+  }
+  .rpg-knowledge-card.local-story-green .rpg-knowledge-img {
+    background: var(--story-bg);
   }
   /* "小知識" — a lighter/quicker fact than a named collectible; flat blue card, pill hint button.
      A photo is still allowed here (unlike the name might suggest) — the badge/style is driven by
@@ -784,13 +829,73 @@
   }
   .rpg-story-img { width: 100%; max-height: 40vh; object-fit: cover; display: block; filter: sepia(0.35) saturate(1.05); }
   .rpg-story-text {
-    font-family: "Noto Serif TC", serif; font-weight: 600; font-size: 17px; line-height: 1.7;
-    color: var(--sepia-dark); padding: 18px 22px 6px; white-space: pre-line; text-align: left;
+    font-family: "Noto Sans TC", sans-serif; font-weight: 500; font-size: 18px; line-height: 1.8;
+    color: var(--sepia-dark); padding: 18px 22px 6px; text-align: left;
   }
+  .rpg-story-text p { margin: 0 0 12px; }
+  .rpg-story-text p:last-child { margin-bottom: 0; }
   .rpg-story-hint {
-    font-family: "Noto Sans TC", sans-serif; font-weight: 700; font-size: 12px;
-    color: var(--sepia); padding: 8px 18px 16px;
+    text-align: center; padding: 10px 18px 16px; font-family: "Noto Sans TC", sans-serif; font-weight: 700; font-size: 12px;
+    color: var(--sepia);
   }
+
+  /* 照片外層裁切容器 */
+  .rpg-story-photo-wrap { position: relative; overflow: hidden; }
+
+  /* ---------- 蓋章動畫：站點完成後，獎章掉落 + 回彈，留下印記 ---------- */
+  .rpg-stamp-overlay {
+    position: absolute; inset: 0; z-index: 34; display: none;
+    align-items: center; justify-content: center; background: rgba(36,28,51,0.7); padding: 0 20px;
+  }
+  .rpg-stamp-overlay.active { display: flex; }
+  .rpg-stamp-card {
+    width: 100%; max-width: 340px; background: #fbf8f1; border: 4px solid var(--ink);
+    border-radius: 22px; box-shadow: 6px 6px 0 var(--ink); text-align: center; padding: 22px 20px 20px;
+  }
+  .rpg-stamp-page-label {
+    font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 700; font-size: 12px;
+    letter-spacing: 2px; color: var(--sub); text-transform: uppercase; margin-bottom: 14px;
+  }
+  .rpg-stamp-drop-zone {
+    height: 120px; display: flex; align-items: center; justify-content: center; overflow: visible;
+  }
+  .rpg-stamp-mark {
+    width: 92px; height: 92px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: rgba(214,69,90,0.08); border: 5px double var(--danger); box-shadow: 0 0 0 2px rgba(214,69,90,0.15);
+    opacity: 0;
+  }
+  .rpg-stamp-mark span {
+    font-family: "Noto Serif TC", serif; font-weight: 700; font-size: 36px; color: var(--danger); line-height: 1;
+  }
+  .rpg-stamp-mark small {
+    font-family: "Noto Sans TC", sans-serif; font-weight: 700; font-size: 9px; letter-spacing: 1.5px; color: var(--danger); margin-top: 2px;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .rpg-stamp-mark.drop { animation: rpgStampDrop 0.8s cubic-bezier(.34,1.56,.64,1) both; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rpg-stamp-mark.drop { opacity: 1; transform: rotate(-8deg); }
+  }
+  @keyframes rpgStampDrop {
+    0%   { transform: translateY(-150px) scale(2.2) rotate(-22deg); opacity: 0; }
+    55%  { transform: translateY(0) scale(0.95) rotate(-8deg); opacity: 1; }
+    72%  { transform: translateY(-8px) scale(1.06) rotate(-8deg); }
+    88%  { transform: translateY(0) scale(0.98) rotate(-8deg); }
+    100% { transform: translateY(0) scale(1) rotate(-8deg); opacity: 1; }
+  }
+  .rpg-stamp-label {
+    margin-top: 16px; font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 700; font-size: 15px;
+    color: var(--ink); min-height: 20px; opacity: 0; transition: opacity 0.35s;
+  }
+  .rpg-stamp-overlay.dropped .rpg-stamp-label { opacity: 1; }
+  .rpg-stamp-continue {
+    margin-top: 18px; width: 100%; padding: 12px; font-family: "Baloo 2", "Noto Sans TC", sans-serif;
+    font-weight: 800; font-size: 15px; color: #fff; background: var(--accent); border: 3px solid var(--ink);
+    border-radius: 14px; box-shadow: 4px 4px 0 var(--ink); cursor: pointer;
+    opacity: 0; pointer-events: none; transition: opacity 0.35s;
+  }
+  .rpg-stamp-overlay.dropped .rpg-stamp-continue { opacity: 1; pointer-events: auto; }
+  .rpg-stamp-continue:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
 
   .rpg-choices { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
   .rpg-pending { font-family: "Noto Sans TC", sans-serif; font-size: 13px; color: var(--sub); text-align: center; }
@@ -824,14 +929,6 @@
   }
   .rpg-multi-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
-  .rpg-find-btn {
-    display: none; width: 100%; margin-top: 10px; padding: 13px; font-family: "Baloo 2", "Noto Sans TC", sans-serif;
-    font-weight: 800; font-size: 15px; border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--ink);
-    border-radius: 14px; cursor: pointer;
-    background: var(--yellow); color: var(--ink);
-  }
-  .rpg-find-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
-
   .ticket-fill { display: flex; gap: 8px; margin-top: 12px; }
   .ticket-fill input {
     flex: 1; padding: 12px 14px; font-size: 15px; border-radius: 12px; border: 3px solid var(--ink); margin-bottom: 0;
@@ -859,6 +956,14 @@
   }
   .map-title { font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 700; font-size: 16px; letter-spacing: 0.5px; color: var(--ink); }
   .map-subtitle { font-family: "Noto Sans TC", sans-serif; font-size: 10.5px; color: var(--sub); margin-top: 2px; }
+  .route-switcher { display: flex; gap: 6px; margin-top: 8px; }
+  .route-chip {
+    font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-weight: 700; font-size: 11.5px;
+    color: var(--ink); background: var(--card); border: 2.5px solid var(--ink); border-radius: 30px;
+    box-shadow: 2px 2px 0 var(--ink); padding: 5px 11px; cursor: pointer; transition: transform 0.1s;
+  }
+  .route-chip:active { transform: translate(1px, 1px); box-shadow: 1px 1px 0 var(--ink); }
+  .route-chip.active { background: var(--yellow); }
   .map-topbar-right { display: flex; align-items: center; gap: 10px; }
   .map-username {
     font-family: "Noto Sans TC", sans-serif; font-size: 12px; font-weight: 700; color: var(--sub);
@@ -898,6 +1003,17 @@
   .nearest-chip .name { font-weight: 800; font-family: "Baloo 2", "Noto Sans TC", sans-serif; font-size: 12px; line-height: 1.3; }
   .nearest-chip .dist { margin-left: auto; font-weight: 800; color: var(--accent-dark); font-size: 11px; }
   .me-dot { width: 16px; height: 16px; border-radius: 50%; background: var(--clay); border: 3px solid #fff; box-shadow: 0 0 0 4px rgba(58,160,255,.3); }
+
+  /* 跟 nearest-chip 同一個位置，兩者互斥顯示——定位失敗/被拒絕時顯示這顆按鈕，
+     不然玩家會完全看不到「離你最近」功能，也不知道發生了什麼事、要怎麼恢復 */
+  .locate-me-btn {
+    position: absolute; left: 14px; right: 14px; top: 14px; z-index: 800;
+    background: var(--card); border: 2px solid var(--ink); border-radius: 13px; padding: 9px 11px;
+    box-shadow: 3px 3px 0 var(--ink); cursor: pointer;
+    font-family: "Noto Sans TC", sans-serif; font-weight: 700; font-size: 12px; color: var(--ink);
+    text-align: center;
+  }
+  .locate-me-btn:active { transform: translateY(1px); box-shadow: 2px 2px 0 var(--ink); }
 
   /* 平常隱藏，玩家把地圖滑走/縮放後才會浮現——出現的時機本身就在提示「這是要帶你回去剛才畫面」，
      而且是在滑動結束後才顯示（不是滑動途中），手指滑地圖時不會不小心先點到它 */
@@ -1044,3 +1160,308 @@
     box-shadow: 3px 3px 0 var(--ink);
   }
   .map-shop-btn:active { transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--ink); }
+
+/* ============================================================
+ * 線索卡｜淡灰紫＋深紫灰
+ * 依據最後確認的展示版整理；載入於原 styles.css 之後。
+ * 這是覆寫樣式，依賴原專案的 HTML 與基礎 CSS，請勿替換整份 styles.css。
+ * 不需要展示頁的 coordinated-soft 類別，也不需要 preview.js。
+ * JS 套用：cardEl.classList.toggle("muted-clue", step.kind === "clue");
+ * ============================================================ */
+
+/* 1. 卡片本體：底色、2px 細框、淡陰影。 */
+.rpg-knowledge-card.muted-clue {
+  --popup-bg: #f0edf5;
+  --popup-border: #b9abc9;
+  --popup-accent: #655477;
+  --popup-ink: #45394f;
+  background: var(--popup-bg);
+  border: 2px solid var(--popup-border);
+  border-radius: 22px;
+  box-shadow: 0 10px 28px rgba(40, 35, 30, .16);
+}
+
+/* 2. 右上角標籤：深色底、白字，移除原本厚邊框與硬陰影。 */
+.rpg-knowledge-card.muted-clue .rpg-card-badge.corner {
+  background: var(--popup-accent);
+  color: #fff;
+  border: 1px solid var(--popup-accent);
+  box-shadow: 0 2px 7px rgba(40, 35, 30, .12);
+}
+
+/* 3. 內容文字：改深色字，覆蓋原小知識卡的白字。 */
+.rpg-knowledge-card.muted-clue .rpg-knowledge-text {
+  color: var(--popup-ink);
+  font-weight: 500;
+}
+
+/* 4. 標題與底部「點一下繼續」。 */
+.rpg-knowledge-card.muted-clue .rpg-knowledge-title,
+.rpg-knowledge-card.muted-clue .rpg-knowledge-hint { color: var(--popup-ink); }
+.rpg-knowledge-card.muted-clue .rpg-knowledge-hint span {
+  background: transparent;
+  color: var(--popup-ink);
+}
+
+/* 5. 圖片區：有照片時，留白底色跟卡片一致。 */
+.rpg-knowledge-card.muted-clue .rpg-knowledge-img { background: var(--popup-bg); }
+
+/* 入場效果：短暫淡入；流程不應依賴 animationend 才能繼續。 */
+.rpg-knowledge-overlay.active .rpg-knowledge-card.muted-clue {
+  animation: yg-muted-clue-in .22s ease-out;
+}
+@keyframes yg-muted-clue-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* 無障礙：遵循使用者減少動態效果的設定。 */
+@media (prefers-reduced-motion: reduce) {
+  .rpg-knowledge-overlay.active .rpg-knowledge-card.muted-clue { animation: none; }
+}
+
+/* ============================================================
+ * 小知識｜淺灰藍＋深灰藍
+ * 依據最後確認的展示版整理；載入於原 styles.css 之後。
+ * 這是覆寫樣式，依賴原專案的 HTML 與基礎 CSS，請勿替換整份 styles.css。
+ * 不需要展示頁的 coordinated-soft 類別，也不需要 preview.js。
+ * JS 套用：cardEl.classList.toggle("muted-brief", !step.title && step.kind !== "clue");
+ * ============================================================ */
+
+/* 1. 卡片本體：底色、2px 細框、淡陰影。 */
+.rpg-knowledge-card.muted-brief {
+  --popup-bg: #eef2f4;
+  --popup-border: #b4c1c9;
+  --popup-accent: #526977;
+  --popup-ink: #354650;
+  background: var(--popup-bg);
+  border: 2px solid var(--popup-border);
+  border-radius: 22px;
+  box-shadow: 0 10px 28px rgba(40, 35, 30, .16);
+}
+
+/* 2. 右上角標籤：深色底、白字，移除原本厚邊框與硬陰影。 */
+.rpg-knowledge-card.muted-brief .rpg-card-badge.corner {
+  background: var(--popup-accent);
+  color: #fff;
+  border: 1px solid var(--popup-accent);
+  box-shadow: 0 2px 7px rgba(40, 35, 30, .12);
+}
+
+/* 3. 內容文字：改深色字，覆蓋原小知識卡的白字。 */
+.rpg-knowledge-card.muted-brief .rpg-knowledge-text {
+  color: var(--popup-ink);
+  font-weight: 500;
+}
+
+/* 4. 標題與底部「點一下繼續」。 */
+.rpg-knowledge-card.muted-brief .rpg-knowledge-title,
+.rpg-knowledge-card.muted-brief .rpg-knowledge-hint { color: var(--popup-ink); }
+.rpg-knowledge-card.muted-brief .rpg-knowledge-hint span {
+  background: transparent;
+  color: var(--popup-ink);
+}
+
+/* 5. 圖片區：有照片時，留白底色跟卡片一致。 */
+.rpg-knowledge-card.muted-brief .rpg-knowledge-img { background: var(--popup-bg); }
+
+/* 入場效果：短暫淡入；流程不應依賴 animationend 才能繼續。 */
+.rpg-knowledge-overlay.active .rpg-knowledge-card.muted-brief {
+  animation: yg-muted-brief-in .22s ease-out;
+}
+@keyframes yg-muted-brief-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* 無障礙：遵循使用者減少動態效果的設定。 */
+@media (prefers-reduced-motion: reduce) {
+  .rpg-knowledge-overlay.active .rpg-knowledge-card.muted-brief { animation: none; }
+}
+
+/* ============================================================
+ * 嚮導回憶｜米白＋棕色
+ * 依據最後確認的展示版整理；載入於原 styles.css 之後。
+ * 這是覆寫樣式，依賴原專案的 HTML 與基礎 CSS，請勿替換整份 styles.css。
+ * 不需要展示頁的 coordinated-soft 類別，也不需要 preview.js。
+ * 對應 type: "story"；沿用 .rpg-story-overlay，無須新增樣式開關類別。
+ * 不使用進場動畫，卡片直接以最終樣式顯示。
+ * ============================================================ */
+
+/* 1. 回憶卡本體：米色紙張、細棕框與柔和陰影。 */
+.rpg-story-overlay .rpg-story-card {
+  background: #fdf6ec;
+  border: 2px solid #b79c7e;
+  border-radius: 22px;
+  box-shadow: 0 10px 28px rgba(58, 42, 28, .18);
+}
+
+/* 2. 左上角「嚮導回憶」標籤。 */
+.rpg-story-overlay .rpg-card-badge.story {
+  background: #88633f;
+  color: #fff;
+  border: 1px solid #88633f;
+  box-shadow: 0 2px 7px rgba(58, 42, 28, .13);
+}
+
+/* 3. 照片：保留原本的復古濾鏡。 */
+.rpg-story-overlay .rpg-story-img {
+  filter: sepia(.35) saturate(1.05);
+}
+
+/* 4. 故事內文：回憶感留給照片跟標籤，內文走清楚好讀的深灰褐色。 */
+.rpg-story-overlay .rpg-story-text { color: #3F352D; }
+.rpg-story-overlay .rpg-story-hint { color: #795d42; }
+
+/* ============================================================
+ * 現場提示｜白底深藍＋灰藍內嵌提醒
+ * 依據最後確認的展示版整理；載入於原 styles.css 之後。
+ * 這是覆寫樣式，依賴原專案的 HTML 與基礎 CSS，請勿替換整份 styles.css。
+ * 不需要展示頁的 coordinated-soft 類別，也不需要 preview.js。
+ * 對應 type: "notice"；只限定 .rpg-notice-overlay，避免改到共用卡片的定位確認。
+ * ============================================================ */
+
+/* 1. 整張現場提示卡：白底、灰藍細框。 */
+.rpg-notice-overlay .rpg-notice-card {
+  background: #fff;
+  border: 2px solid #aabcc9;
+  border-radius: 24px;
+  color: #304a60;
+  box-shadow: 0 10px 28px rgba(33, 53, 70, .16);
+}
+
+/* 2. 左上「現場提示」標籤與定位圖示。 */
+.rpg-notice-overlay .rpg-notice-badge { background: #345773; color: #fff; }
+.rpg-notice-overlay .rpg-notice-badge svg circle { fill: #fff; }
+
+/* 3. 目的地大標題、括號副標、地名底色。 */
+.rpg-notice-overlay .rpg-notice-heading,
+.rpg-notice-overlay .rpg-notice-subline { color: #29475f; }
+.rpg-notice-overlay .rpg-notice-heading mark { background: #eaf0f5; color: #29475f; }
+
+/* 4. 「請留意周遭環境」提醒列：最新版為灰藍，不使用黃色框。
+ * 保留 HTML 原本的顯示／隱藏控制，這裡不修改 display。
+ */
+.rpg-notice-overlay .rpg-notice-warn {
+  background: #f2f5f7;
+  border: 0;
+  border-left: 3px solid #8fa7ba;
+  border-radius: 0 8px 8px 0;
+  padding: 11px 13px;
+  gap: 9px;
+  color: #4c6273;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.75;
+  margin-top: 16px;
+  margin-bottom: 4px;
+}
+
+/* 5. 提醒列的三角形與驚嘆號：一起改成灰藍色。 */
+.rpg-notice-overlay .rpg-notice-warn svg { width: 18px; height: 18px; margin-top: 2px; }
+.rpg-notice-overlay .rpg-notice-warn svg path { fill: #e4ecf2; stroke: #627f96; }
+.rpg-notice-overlay .rpg-notice-warn svg rect { fill: #4d6c83; }
+
+/* 6. 現場參考照片與照片說明。 */
+.rpg-notice-overlay .rpg-notice-img { border: 1px solid #becbd5; background: #f3f6f8; }
+.rpg-notice-overlay .rpg-notice-cap { color: #50677a; }
+
+/* 7. 底部「點一下畫面繼續」提示。 */
+.rpg-notice-overlay .rpg-notice-hint {
+  background: #edf2f6;
+  border: 1px solid #b3c3cf;
+  color: #345773;
+  box-shadow: 0 2px 6px rgba(33, 53, 70, .08);
+}
+
+/* 入場效果：短暫淡入；流程不應依賴 animationend 才能繼續。 */
+.rpg-notice-overlay.active .rpg-notice-card {
+  animation: yg-notice-card-in .22s ease-out;
+}
+@keyframes yg-notice-card-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* 無障礙：遵循使用者減少動態效果的設定。 */
+@media (prefers-reduced-motion: reduce) {
+  .rpg-notice-overlay.active .rpg-notice-card { animation: none; }
+}
+
+/* ============================================================
+ * 定位確認｜冷灰底＋深藍操作按鈕
+ * 依據最後確認的展示版整理；載入於原 styles.css 之後。
+ * 這是覆寫樣式，依賴原專案的 HTML 與基礎 CSS，請勿替換整份 styles.css。
+ * 不需要展示頁的 coordinated-soft 類別，也不需要 preview.js。
+ * 對應 type: "gpscheck"；限定 .rpg-gps-overlay，不影響現場提示。
+ * ============================================================ */
+
+/* 1. 定位卡本體：冷灰色背景。 */
+.rpg-gps-overlay .rpg-notice-card {
+  width: 100%;
+  background: #f0f3f6;
+  border: 2px solid #adbdca;
+  border-radius: 24px;
+  color: #304a60;
+  box-shadow: 0 10px 28px rgba(33, 53, 70, .16);
+}
+
+/* 2. 可選標題：HTML 新增 <div class="rpg-gps-heading">確認目前位置</div>。
+ * 放在 #rpg-gps-text 之前；原 HTML 若未新增此元素，不影響其他樣式。
+ */
+.rpg-gps-overlay .rpg-gps-heading { font-size: 20px; color: #29475f; margin-bottom: 12px; }
+
+/* 3. 地點／任務說明文字。 */
+.rpg-gps-overlay #rpg-gps-text { font-size: 14px; font-weight: 500; line-height: 1.8; color: #516475; }
+
+/* 4. 定位狀態區；沒有內容時隱藏，避免出現空白框。
+ * 可放 <strong>狀態標題</strong><span>狀態說明</span>。
+ * 原 JS 若只寫入純文字，也能正常顯示。
+ */
+.rpg-gps-overlay .rpg-gps-status {
+  padding: 16px;
+  margin-top: 18px;
+  background: #fff;
+  border: 1px solid #c6d1da;
+  border-radius: 12px;
+  color: #345773;
+}
+.rpg-gps-overlay .rpg-gps-status:empty { display: none; }
+.rpg-gps-overlay .rpg-gps-status strong { display: block; font-size: 18px; margin-bottom: 6px; }
+.rpg-gps-overlay .rpg-gps-status span { display: block; font-size: 12px; font-weight: 400; line-height: 1.7; }
+
+/* 5. 重新定位按鈕與按下回饋；原有 disabled 邏輯維持不變。 */
+.rpg-gps-overlay .rpg-gps-retry-btn {
+  background: #345773;
+  border: 1px solid #29475f;
+  color: #fff;
+  box-shadow: 0 3px 8px rgba(33, 53, 70, .15);
+}
+.rpg-gps-overlay .rpg-gps-retry-btn:active { transform: translateY(1px); box-shadow: 0 1px 3px rgba(33, 53, 70, .12); }
+.rpg-gps-overlay .rpg-gps-retry-btn:disabled { opacity: .6; cursor: not-allowed; }
+
+/* 6. 可選的狀態配色：由真實定位流程設定在 .rpg-gps-overlay 上。
+ * data-gps-state="locating"：開始定位
+ * data-gps-state="pending"：未抵達／定位失敗／重試前（恢復預設配色）
+ * data-gps-state="arrived"：只有原有 GPS 驗證成功才設定
+ * 每次重新開啟或重新定位，須更新此屬性，避免殘留成功綠色。
+ * 不要複製展示頁的狀態模擬功能，也不要用 CSS 判斷是否真正抵達。
+ */
+.rpg-gps-overlay[data-gps-state="locating"] .rpg-gps-status { background: #e9eff5; }
+.rpg-gps-overlay[data-gps-state="arrived"] .rpg-gps-status {
+  background: #eaf2ec;
+  color: #365d50;
+  border-color: #a9c3b0;
+}
+.rpg-gps-overlay[data-gps-state="arrived"] .rpg-gps-retry-btn { background: #365d50; border-color: #365d50; }
+
+/* 入場效果：短暫淡入；流程不應依賴 animationend 才能繼續。 */
+.rpg-gps-overlay.active .rpg-notice-card {
+  animation: yg-gps-card-in .22s ease-out;
+}
+@keyframes yg-gps-card-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* 無障礙：遵循使用者減少動態效果的設定。 */
+@media (prefers-reduced-motion: reduce) {
+  .rpg-gps-overlay.active .rpg-notice-card { animation: none; }
+}
+

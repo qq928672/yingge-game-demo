@@ -1,23 +1,24 @@
 const STATIONS = [
   {
     id: 1,
+    route: "鶯歌",
     name: "站點一 鶯歌車站",
     icon: "🚆",
     questions: [
       {
         qtype: "選擇題",
-        question: "仔細觀察鶯歌火車站的鐵道，你能數出幾條軌道？",
-        options: ["6條", "8條", "10條", "12條"],
+        question: "數數看，鶯歌車站一共有幾條軌道？",
+        options: ["13條", "8條", "10條", "12條"],
       },
       {
         qtype: "選擇題",
-        question: "觀察車站最上方，兩個相望的動物造型是什麼？",
+        question: "觀察火車站最上方，兩個相望的動物造型是什麼？",
         options: ["魚", "貓", "狗", "鳥"],
       },
       {
         qtype: "選擇題",
-        question: "你知道當時鶯歌車站主要轉運哪一種礦產嗎？",
-        options: ["金礦", "鐵礦", "煤礦", "石灰石"],
+        question: "您知道當時鶯歌火車站主要轉運那一種礦產嗎？",
+        options: ["金礦", "陶土", "煤礦", "砂石"],
         fact: "",
       },
       {
@@ -31,7 +32,7 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "小明，我們到鶯歌車站了！你以前來過嗎？",
+        text: "您好，我們到鶯歌火車站了！您以前來過嗎？",
       },
       {
         type: "line",
@@ -41,25 +42,26 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "那正好，先跟我來，我帶你去看看",
+        text: "那正好，先跟我來，我帶您去看看",
       },
       {
         type: "notice",
-        text: "前往 ==建國路、文化路出口==\n【找到手扶梯旁的平台】\n⚠️請留意周遭環境，依照現場動線行走。",
-        photo: "角色照片素材庫/站點一/鐵軌.jpg",
+        text: "前往 ==建國路與文化路出口==\n【找到手扶梯旁的平台】\n⚠️請留意周遭環境，依照現場動線行走。",
+        photo: "角色照片素材庫/鶯歌/站點一/鐵軌.jpg",
+        caption: "圖片中為文化路出口的平台",
       },
       {
         type: "line",
         char: "guide",
-        text: "到了嗎？往下看看，你發現了什麼？",
-        background: "角色照片素材庫/站點一/鐵軌.jpg",
+        text: "觀察到了嗎？往下看看，您發現了什麼？",
+        background: "角色照片素材庫/鶯歌/站點一/鐵軌.jpg",
       },
       {
         type: "question",
         qIndex: 0,
         char: "guide",
-        text: "數數看，現在這裡一共有幾條軌道？",
-        correctReaction: "沒錯！以前的鶯歌車站，跟現在很不一樣",
+        text: "數數看，鶯歌車站一共有幾條軌道？",
+        correctReaction: "沒錯！以前的鶯歌火車站，跟現在很不一樣",
         wrongHints: [
           "再靠近一點看，別漏數了最外側那一條……",
           "試著用手指一條一條數過去，仔細一點",
@@ -72,56 +74,59 @@ const STATIONS = [
       },
       {
         type: "story",
-        text: "以前住在車站附近，吃飯時常會碰上煤灰\n風一吹，煤灰就飄進附近住家，有時飯還沒吃完，連湯上都浮著一層煤灰",
-        photo: "角色照片素材庫/站點一/舊照片.jpg",
+        segments: [
+          "以前住在車站附近，吃飯時常會碰上煤灰。",
+          "風一吹，煤灰就飄進附近住家，有時飯還沒吃完，連湯表面都浮著一層煤灰。",
+        ],
+        photo: "角色照片素材庫/鶯歌/站點一/舊照片.jpg",
       },
       {
         type: "line",
         char: "guide",
-        text: "那時候鐵路不只是載人，也跟附近的礦業有很大的關係",
+        text: "那時候鐵路不只是載人，也跟附近的煤礦產業有很大的關係",
       },
       {
         type: "question",
         qIndex: 2,
         char: "guide",
-        text: "你知道當時鶯歌車站主要轉運哪一種礦產嗎？",
+        text: "您知道當時鶯歌火車站主要轉運那一種礦產嗎？",
         correctReaction: "沒錯，就是煤礦！",
         wrongHints: ["再想想，剛才提到的「煤灰」就是線索喔！"],
       },
       {
         type: "line",
         char: "guide",
-        text: "以前三峽、大溪採出的煤，會送到鶯歌車站，再運往全台。",
+        text: "以前三峽、龜山採出的煤礦，都會送到鶯歌車站再轉運至全台各地。",
       },
       {
         type: "line",
         char: "guide",
-        text: "當時鶯歌貨運繁盛，貨運量一度高居全台第二！",
+        text: "當時鶯歌貨運繁盛，貨運量一度高居全台第二名！",
       },
       {
         type: "line",
         char: "hero",
-        text: "沒想到以前的鶯歌車站這麼熱鬧！",
+        text: "沒想到以前的鶯歌火車站這麼熱鬧！",
       },
       {
         type: "line",
         char: "guide",
-        text: "走吧！我們到前站看看",
+        text: "走吧！我們到站外走走看看",
       },
       {
         type: "notice",
-        text: "請前往 一樓前站廣場。\n⚠️ 移動時請留意周遭環境，並依照車站動線行走。",
+        text: "請前往 一樓建國路前站前廣場。\n⚠️ 移動時請留意周遭環境，並依照車站動線行走。",
       },
       {
         type: "line",
         char: "guide",
-        text: "剛才看了鐵軌，接著來看看車站本身吧！",
-        background: "角色照片素材庫/站點一/台鐵鶯歌火車站.jpg",
+        text: "剛才看了鐵軌，接著來看看火車站本身吧！",
+        background: "角色照片素材庫/鶯歌/站點一/台鐵鶯歌火車站.jpg",
       },
       {
         type: "line",
         char: "hero",
-        text: "車站？有什麼特別的嗎？",
+        text: "火車站？有什麼特別的嗎？",
       },
       {
         type: "line",
@@ -132,24 +137,25 @@ const STATIONS = [
         type: "question",
         qIndex: 1,
         char: "guide",
-        text: "觀察車站最上方，兩個相望的動物造型是什麼？",
+        text: "觀察火車站最上方，兩個相望的動物造型是什麼？",
         correctReaction: "沒錯，就是那兩隻鳥",
         wrongHints: ["再看清楚一點，牠們有翅膀會飛..."],
       },
       {
         type: "knowledge",
+        title: "兩隻鳥相望",
         text: "鶯歌車站牆面頂端的「兩隻鳥相望」設計，源自於在地著名的「鶯歌石」與三峽「鳶山」的民間傳說",
-        photo: "角色照片素材庫/站點一/台鐵鶯歌火車站.jpg",
+        photo: "角色照片素材庫/鶯歌/站點一/台鐵鶯歌火車站.jpg",
       },
       {
         type: "line",
         char: "guide",
-        text: "看來你已經發現車站的特色了！再來考考你。",
+        text: "看來您已經發現火車站的特色了！再來考考您。",
       },
       {
         type: "line",
         char: "guide",
-        text: "你知道這裡以前叫什麼名字嗎？",
+        text: "您知道這裡以前叫什麼名字嗎？",
       },
       {
         type: "question",
@@ -162,13 +168,13 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "來，你看這張老照片",
+        text: "來，您看這張老照片",
       },
       {
         type: "knowledge",
         title: "鶯歌車站舊照",
         text: "鶯歌車站最早於1901年（明治34年）8月25日設站，當時命名為鶯歌石驛（早期也曾稱鶯歌石乘降場或停車場）。",
-        photo: "角色照片素材庫/站點一/鶯歌舊車站.jpg",
+        photo: "角色照片素材庫/鶯歌/站點一/鶯歌舊車站.jpg",
       },
       {
         type: "line",
@@ -189,9 +195,9 @@ const STATIONS = [
         type: "end",
       },
     ],
-    background: "角色照片素材庫/站點一/火車站售票口.jpg",
-    arrivePhoto: "角色照片素材庫/站點一/火車站售票口.jpg",
-    arriveHint: "請實際前往站點，抵達後搭手扶梯前往二樓售票處才開始遊戲",
+    background: "角色照片素材庫/鶯歌/站點一/火車站售票口.jpg",
+    arrivePhoto: "角色照片素材庫/鶯歌/站點一/火車站售票口.jpg",
+    arriveHint: "實際前往站點，搭手扶梯前往二樓售票處開始遊戲",
     characters: {
       guide: {
         name: "楊嚮導",
@@ -213,6 +219,7 @@ const STATIONS = [
   },
   {
     id: 2,
+    route: "鶯歌",
     name: "站點二 市拿陶藝",
     questions: [
       {
@@ -232,8 +239,8 @@ const STATIONS = [
       },
       {
         qtype: "選擇題",
-        question: "你知道市拿陶藝早期生產最有名的是哪一類陶瓷？",
-        options: ["日用陶瓷", "建築陶瓷", "仿古藝術陶瓷", "工業陶瓷"],
+        question: "您知道市拿陶藝早期生產最有名的是哪一類陶瓷？",
+        options: ["日用陶瓷", "建築陶瓷", "仿古藝術陶瓷", "衛浴陶瓷"],
       },
       {
         qtype: "選擇題",
@@ -261,7 +268,7 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "先考考你，你知道是誰創辦的嗎？",
+        text: "先考考您，您知道是誰創辦的嗎？",
       },
       {
         type: "question",
@@ -273,8 +280,8 @@ const STATIONS = [
       {
         type: "knowledge",
         title: "許自然",
-        text: "市拿陶藝於1972年由許自然先生創立，初期主要燒製仿古陶瓷， 成為當時首屈一指的現代官窯。",
-        photo: "角色照片素材庫/站點二/許自然.jpg",
+        text: "市拿陶藝於1972年由許自然先生創立，初期主要燒製仿古陶瓷， 成為當時首屈一指的現代官窯，當時生產的古瓷器都會加上「自然窯」標誌。",
+        photo: "角色照片素材庫/鶯歌/站點二/許自然.jpg",
       },
       {
         type: "line",
@@ -289,7 +296,7 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "這就有故事了！你先猜猜看，「市拿」代表什麼意思？",
+        text: "這就有故事了！您先猜猜看，「市拿」代表什麼意思？",
       },
       {
         type: "question",
@@ -306,7 +313,7 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "那你猜猜，市拿陶藝早期最有名的是哪一類陶瓷？",
+        text: "那您猜猜，市拿陶藝早期最有名的是哪一類陶瓷？",
       },
       {
         type: "question",
@@ -319,7 +326,7 @@ const STATIONS = [
         type: "knowledge",
         title: "仿古藝術陶瓷",
         text: "市拿陶瓷以仿製元、明、清瓷器精品聞名，運用青花、粉彩、鬥彩、釉裡紅等傳統彩繪技法",
-        photo: "角色照片素材庫/站點二/仿古陶瓷.jpg",
+        photo: "角色照片素材庫/鶯歌/站點二/仿古陶瓷.jpg",
       },
       {
         type: "line",
@@ -359,15 +366,15 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "你知道後來主要引進了哪一種能源嗎？",
+        text: "您知道後來主要引進了哪一種能源嗎？",
       },
       {
         type: "question",
         qIndex: 3,
         char: "guide",
-        text: "早期鶯歌窯場常以煤炭燒窯，黑煙曾是街區常見的景象後來窯業逐漸改用較乾淨的能源，這項改變主要是引進了哪種能源？",
+        text: "早期鶯歌窯場常以煤炭燒窯，黑煙曾是街區常見的景象，後來窯業逐漸改用較乾淨的能源，這項改變主要是引進了哪種能源？",
         correctReaction:
-          "答對了！許自然擔任陶瓷工業同業公會理事長時，積極爭取將瓦斯管線引進鶯歌",
+          "答對了！許自然在七零年代擔任陶瓷工業同業公會理事長時，積極爭取將瓦斯管線引進鶯歌",
       },
       {
         type: "line",
@@ -378,7 +385,7 @@ const STATIONS = [
         type: "knowledge",
         title: "瓦斯窯內部",
         text: "瓦斯的引進，讓鶯歌窯業逐步採用瓦斯窯，不只減少黑煙，也提升陶瓷品質、增加產品種類。",
-        photo: "角色照片素材庫/站點二/瓦斯窯.jpg",
+        photo: "角色照片素材庫/鶯歌/站點二/瓦斯窯.jpg",
       },
       {
         type: "line",
@@ -415,19 +422,20 @@ const STATIONS = [
     location: {
       lat: 24.957876912256797,
       lng: 121.35421614844424,
-      radius: 50,
+      radius: 40,
     },
-    background: "角色照片素材庫/站點二/市拿陶藝.jpg",
+    background: "角色照片素材庫/鶯歌/站點二/市拿陶藝.jpg",
   },
   {
     id: 3,
+    route: "鶯歌",
     name: "站點三 鶯歌石",
     questions: [
       {
         qtype: "選擇題",
         question: "傳說中，鶯歌石為什麼會少了一截？",
         options: [
-          "巨石曾被山崩掩埋而成",
+          "巨石曾被山崩破壞而成",
           "鄭成功下令開砲，轟斷了巨鳥的頭部",
           "後人開採造成缺口",
           "長年風吹雨淋自然風化",
@@ -441,177 +449,66 @@ const STATIONS = [
           "附近曾有許多鸚哥",
           "石頭形狀像鸚哥",
           "傳說鸚哥住在洞裡",
-          "因為鄭成功曾在此養鸚哥",
+          "因為鄭成功曾引進鸚哥",
         ],
       },
       {
         qtype: "選擇題",
         question:
-          "觀察登山地圖,鶯歌除了「鶯歌石」這顆鳥形巨石外,哪座廟宇因供奉這顆「龜公石」,又被稱為「龜公廟」？",
-        options: ["妙善宮", "宏德宮", "碧龍宮", "福德宮"],
-      },
-      {
-        qtype: "選擇題",
-        question:
-          "現在的孫龍步道是一條登山步道,但在百年前這裡曾經有另一種用途,你知道孫龍步道的前身是什麼嗎？",
+          "現在的孫龍步道是一條登山步道，但在百年前，這裡曾有另一種用途。您知道它的前身是什麼嗎？",
         options: [
-          "運送陶土的道路",
+          "運送挖掘出陶土的挑陶路",
           "採礦台車行駛的輕便鐵道",
           "軍事運輸道路",
           "茶葉運輸道路",
         ],
+      },
+      {
+        qtype: "選擇題",
+        question: "請觀察鶯歌石，岩石中可以發現哪一類的化石？",
+        options: ["牡蠣貝殼化石", "植物葉片化石", "魚類化石", "動物化石"],
       },
     ],
     dialogue: [
       {
         type: "line",
         char: "hero",
-        text: "我們接下來要去哪裡？",
+        text: "就是這裡嗎？看起來要沿著步道往上走耶。",
+        background: "角色照片素材庫/鶯歌/站點三/步道入口.jpg",
       },
       {
         type: "line",
         char: "guide",
-        text: "帶你去找鶯歌一個很有名的地標——鶯歌石！",
+        text: "沒錯！沿著這條步道往前，就能找到鶯歌很有代表性的地標——鶯歌石",
       },
       {
         type: "line",
         char: "hero",
-        text: "鶯歌石？就是那顆很大的石頭嗎？",
+        text: "我們要直接去找鶯歌石嗎？",
       },
       {
         type: "line",
         char: "guide",
-        text: "沒錯！不過在找到它之前，先跟我走一段路吧",
+        text: "先別急！在前往鶯歌石之前，步道沿途藏著一個和它名字有關的線索。",
       },
       {
         type: "notice",
-        text: "從孫臏廟旁的孫龍步道開始",
-        photo: "角色照片素材庫/站點三/孫龍步道.jpg",
-      },
-      {
-        type: "line",
-        char: "guide",
-        text: "有沒有看到，前面有一輛台車？",
-      },
-      {
-        type: "line",
-        char: "hero",
-        text: "這裡居然還保留著",
-      },
-      {
-        type: "line",
-        char: "guide",
-        text: "那麼我就考考你，要仔細看看解說牌",
-      },
-      {
-        type: "question",
-        qIndex: 3,
-        char: "guide",
-        text: "現在的孫龍步道是一條登山步道,但在百年前這裡曾經有另一種用途,你知道孫龍步道的前身是什麼嗎？",
-        correctReaction: "沒錯，這裡以前是採礦台車行駛的輕便鐵道",
-      },
-      {
-        type: "line",
-        char: "guide",
-        text: "當時鶯歌山區礦業發展興盛，這條輕便道主要用來運送煤炭與物資",
-      },
-      {
-        type: "line",
-        char: "guide",
-        text: "礦業沒落後，舊鐵道與台車道改建成平緩的步道，成為今日健行賞景的好去處",
-      },
-      {
-        type: "line",
-        char: "guide",
-        text: "跟著這條路走下去，我們就要接近鶯歌石的登山處",
-      },
-      {
-        type: "notice",
-        text: "前往鶯歌石登山口",
-        photo: "角色照片素材庫/站點三/步道入口.jpg",
-      },
-      {
-        type: "line",
-        char: "hero",
-        text: "所以沿著這裡走上去，就能到鶯歌石了？",
-        background: "角色照片素材庫/站點三/步道入口.jpg",
-      },
-      {
-        type: "line",
-        char: "guide",
-        text: "沒錯，繼續往前走吧",
-      },
-      {
-        type: "notice",
-        text: "前往鶯歌石",
+        text: "前往鶯歌石碑",
+        photo: "角色照片素材庫/鶯歌/站點三/鶯歌石碑.jpg",
       },
       {
         type: "gpscheck",
-        text: "請爬到鶯歌石旁，讓我們確認你已經抵達",
+        text: "請找到鶯歌石碑，讓我們確認您已經抵達",
         location: {
-          lat: 24.95877201729627,
-          lng: 121.36043833303971,
+          lat: 24.958810504583525,
+          lng: 121.35945883009234,
           radius: 30,
         },
       },
       {
         type: "line",
         char: "hero",
-        text: "哇，這就是鶯歌石！",
-        background: "角色照片素材庫/站點三/鶯歌石.jpg",
-      },
-      {
-        type: "line",
-        char: "guide",
-        text: "沒錯，它可是鶯歌很有代表性的地標",
-      },
-      {
-        type: "line",
-        char: "hero",
-        text: "咦？不過它看起來……好像少了一角？",
-      },
-      {
-        type: "line",
-        char: "guide",
-        text: "觀察得很仔細！你猜猜看，這一角為什麼會不見呢？",
-      },
-      {
-        type: "question",
-        qIndex: 0,
-        char: "guide",
-        text: "鶯歌石為什麼會少了一截？",
-        correctReaction:
-          "沒錯，是長期受到風吹、雨淋等自然作用，慢慢風化形成現在的樣子",
-      },
-      {
-        type: "line",
-        char: "hero",
-        text: "原來不是以前被人打掉的喔！",
-      },
-      {
-        type: "line",
-        char: "guide",
-        text: "關於鶯歌石，可不只有你眼前看到的這些。",
-      },
-      {
-        type: "line",
-        char: "hero",
-        text: "難道還有什麼秘密？",
-      },
-      {
-        type: "line",
-        char: "guide",
-        text: "找找附近的小石碑，也許會有答案",
-      },
-      {
-        type: "notice",
-        text: "尋找岩洞旁石碑",
-        // 待補：岩洞旁石碑授權照片
-      },
-      {
-        type: "line",
-        char: "hero",
-        text: "找到了！這上面好像有寫鶯歌石的由來",
+        text: "找到了！這上面好像有寫鶯歌地名的由來",
       },
       {
         type: "line",
@@ -634,103 +531,118 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "鶯歌有趣的石頭可不只這一顆。走吧，我們先下山",
+        text: "走吧，帶您去看看鶯歌石本尊",
       },
       {
         type: "notice",
-        text: "先回到一開始的步道入口",
-        photo: "角色照片素材庫/站點三/步道入口.jpg",
+        text: "前往鶯歌石觀景平台",
+        photo: "角色照片素材庫/鶯歌/站點三/鶯歌石.jpg",
+      },
+      {
+        type: "gpscheck",
+        text: "請爬到鶯歌石平台，讓我們確認您已經抵達",
+        location: {
+          lat: 24.95907252082534,
+          lng: 121.35940586280836,
+          radius: 30,
+        },
+      },
+      {
+        type: "line",
+        char: "hero",
+        text: "哇，這就是鶯歌石！",
+        background: "角色照片素材庫/鶯歌/站點三/鶯歌石.jpg",
       },
       {
         type: "line",
         char: "guide",
-        text: "先別急著走，你還記得這裡的登山地圖嗎？",
-        background: "角色照片素材庫/站點三/步道入口.jpg",
+        text: "沒錯，它可是鶯歌很有代表性的地標",
+      },
+      {
+        type: "line",
+        char: "hero",
+        text: "咦？不過它看起來……好像少了一角？",
+      },
+      {
+        type: "line",
+        char: "guide",
+        text: "觀察得很仔細！您猜猜看，這一角為什麼會不見呢？",
+      },
+      {
+        type: "question",
+        qIndex: 0,
+        char: "guide",
+        text: "鶯歌石為什麼會少了一截？",
+        correctReaction:
+          "沒錯，是長期受到風吹、雨淋等自然作用，慢慢風化形成現在的樣子",
+      },
+      {
+        type: "line",
+        char: "hero",
+        text: "原來鶯歌石缺掉的這一角，背後還有這段故事！",
+      },
+      {
+        type: "line",
+        char: "guide",
+        text: "您觀察得很仔細！那再看看鶯歌石的岩石表面，有沒有發現什麼特別的痕跡？",
+      },
+      {
+        type: "line",
+        char: "hero",
+        text: "特別的痕跡？我來找找看！",
       },
       {
         type: "notice",
-        text: "尋找附近有沒有登山步道導覽圖",
-        photo: "角色照片素材庫/站點三/導覽地圖.jpg",
+        text: "仔細觀察鶯歌石的岩石表面，尋找藏在其中的特殊痕跡。",
+      },
+      {
+        type: "question",
+        qIndex: 3,
+        char: "guide",
+        text: "請觀察鶯歌石，岩石中可以發現哪一類的化石？",
+        correctReaction: "沒錯！鶯歌石上可以發現牡蠣貝殼化石，仔細看還有許多生痕化石喔！",
+      },
+      {
+        type: "line",
+        char: "guide",
+        text: "對了小明，剛才登山口前那一小段路，您有注意到嗎？",
       },
       {
         type: "line",
         char: "hero",
-        text: "地圖上還藏著什麼嗎？",
+        text: "有啊，看起來還蠻平緩的。",
       },
       {
         type: "line",
         char: "guide",
-        text: "剛才我們看了「鶯歌石」，其實山上還有另一顆特別的「龜公石」",
+        text: "那條步道就是「孫龍步道」。不過在百年前，它可不是拿來登山的喔！",
       },
       {
         type: "line",
         char: "hero",
-        text: "龜公石？這名字也太特別了，是因為長得像烏龜嗎？",
+        text: "咦？那以前是做什麼的？",
       },
       {
         type: "line",
         char: "guide",
-        text: "沒錯！因為外形像烏龜，所以被稱為「龜公石」",
-      },
-      {
-        type: "line",
-        char: "guide",
-        text: "而且附近有座廟就供奉著這顆龜公石，因此也被稱為「龜公廟」",
-      },
-      {
-        type: "line",
-        char: "hero",
-        text: "那是哪座廟？",
-      },
-      {
-        type: "line",
-        char: "guide",
-        text: "在這張登山地圖上，找找看吧！",
+        text: "猜猜看，它以前有什麼用途？",
       },
       {
         type: "question",
         qIndex: 2,
         char: "guide",
-        text: "觀察登山地圖,鶯歌除了「鶯歌石」這顆鳥形巨石外,哪座廟宇因供奉這顆「龜公石」,又被稱為「龜公廟」？",
-        correctReaction: "沒錯，是碧龍宮",
-        reactionBackground: "角色照片素材庫/站點三/碧龍宮.jpg",
-      },
-      {
-        type: "knowledge",
-        title: "碧龍宮",
-        text: "鶯歌碧龍宮，全稱鶯山巖碧龍宮，俗稱龜公廟，是位於台灣新北市鶯歌區建德里牛灶坑山的廟宇，建廟原因是供奉一顆狀似龜殼的石頭。",
-        photo: "角色照片素材庫/站點三/碧龍宮.jpg",
+        text: "現在的孫龍步道是一條登山步道，但在百年前，這裡曾有另一種用途。您知道它的前身是什麼嗎？",
+        correctReaction: "沒錯！昔日台車行駛的路線，如今成了人們健行的步道。",
       },
       {
         type: "line",
         char: "hero",
-        text: "那他有什麼民間故事嗎?",
+        text: "沒想到鶯歌石周圍，還藏著這麼多過去的故事！",
       },
       {
         type: "line",
         char: "guide",
-        text: "給你看一張照片，我來告訴你",
-      },
-      {
-        type: "knowledge",
-        title: "龜公石",
-        text: "早年居民發現一塊帶有龜形紋路的石頭，認為它具有靈性並祭拜祈福。隨著信仰流傳，「龜公石」逐漸成為地方信仰與鶯歌的特色地標",
-        photo: "角色照片素材庫/站點三/龜公石.jpg",
-      },
-      {
-        type: "line",
-        char: "hero",
-        text: "原來龜公石背後還有這樣的故事！",
-      },
-      {
-        type: "line",
-        char: "guide",
-        text: "鶯歌值得探索的地方還多著呢！",
-      },
-      {
-        type: "line",
-        char: "hero",
-        text: "那我們繼續出發吧！",
+        text: "是啊！鶯歌石就探索到這裡，我們繼續前往下一站吧！",
       },
       {
         type: "end",
@@ -748,41 +660,47 @@ const STATIONS = [
         side: "right",
       },
     },
-    address: "孫龍步道內；入口可由中正一路一帶進入",
+    address: "新北市鶯歌區北鶯公園旁，鶯歌石步道木棧階梯入口",
     location: {
-      lat: 24.958025499906736,
-      lng: 121.35701852069056,
-      radius: 50,
+      lat: 24.958217500415497,
+      lng: 121.35952733153984,
+      radius: 40,
     },
-    background: "角色照片素材庫/站點三/孫龍步道.jpg",
+    background: "角色照片素材庫/鶯歌/站點三/鶯歌石.jpg",
   },
   {
     id: 4,
+    route: "鶯歌",
     name: "站點四 尋找老煙囪",
     questions: [
       {
         qtype: "選擇題",
-        question: "仔細觀察眼前的老煙囪，它最明顯的外觀特色是什麼？",
-        options: ["圓形", "八角形", "四角形", "六角形"],
+        question: "仔細觀察眼前高聳的老煙囪，它最明顯的外觀特色是什麼？",
+        options: ["圓形", "三角形", "四角形", "六角形"],
       },
       {
         qtype: "選擇題",
         question: "鶯歌四角窯主要使用什麼作為燃料？",
-        options: ["木材", "天然氣", "煤炭", "瓦斯"],
+        options: ["木材", "天然氣", "煤礦", "瓦斯"],
       },
       {
         qtype: "選擇題",
-        question: "鶯歌四角窯改良了傳統窯燒的方式，採用哪一種窯型設計？",
-        options: ["直焰式", "平焰式", "倒焰式", "旋焰式"],
+        question: "早期窯廠為什麼要把煙囪蓋得這麼高？",
+        options: [
+          "利用「煙囪效應」增加空氣流動，提高燃燒效率",
+          "讓燒窯產生的煙霧不會汙染到自己",
+          "防止窯爐的熱氣傳到周圍",
+          "讓大家可以從遠處看到窯場的位置",
+        ],
       },
       {
         qtype: "選擇題",
-        question: "煙囪為何逐漸消失？主要原因是什麼",
+        question: "煙囪為何逐漸消失？下列哪一個不是主要原因？",
         options: [
           "煙囪製造成本太高",
           "陶瓷工廠開始集中於特定區域內，所以被限制",
           "窯爐陸續被改用瓦斯窯取代",
-          "排煙造成空氣汙染被禁止使用",
+          "排煙造成空氣汙染開始被重視",
         ],
       },
     ],
@@ -801,43 +719,53 @@ const STATIONS = [
         type: "question",
         qIndex: 0,
         char: "guide",
-        text: "仔細觀察眼前的老煙囪，它最明顯的外觀特色是什麼？",
-        correctReaction: "四角形，所以也被稱為「四角窯」",
+        text: "仔細觀察眼前高聳的老煙囪，它最明顯的外觀特色是什麼？",
+        correctReaction: "四角形斷面，它也被稱為「四角窯煙囪」",
       },
       {
         type: "line",
         char: "hero",
-        text: "以前的窯場都長這樣嗎？",
+        text: "以前的窯場煙囪都是長這樣的嗎？",
       },
       {
         type: "line",
         char: "guide",
-        text: "不一定光是燒窯用的燃料，就有各種不同類型",
+        text: "不一定，會因為燒窯使用的燃料，分成很多種不同型態。",
       },
       {
         type: "question",
         qIndex: 1,
         char: "guide",
         text: "鶯歌四角窯主要使用什麼作為燃料？",
-        correctReaction: "以前主要燒煤炭窯燒時產生的煙氣，就會經由煙囪排出",
+        correctReaction: "以前主要燒煤炭窯燒時會產生很多煤灰，需要很強的吸力由煙囪排出",
       },
       {
         type: "line",
         char: "hero",
-        text: "難怪以前的鶯歌會有這麼多煙囪",
+        text: "難怪以前的鶯歌會有這麼多煙囪！",
       },
       {
         type: "line",
         char: "guide",
-        text: "而且當時的窯爐還改良了燒製方式",
+        text: "沒錯！而且您有沒有發現，以前窯廠的煙囪都蓋得特別高？",
+      },
+      {
+        type: "line",
+        char: "hero",
+        text: "對耶！為什麼需要蓋這麼高呢？",
+      },
+      {
+        type: "line",
+        char: "guide",
+        text: "高度可不是隨便決定的，猜猜看有什麼作用？",
       },
       {
         type: "question",
         qIndex: 2,
         char: "guide",
-        text: "鶯歌四角窯改良了傳統窯燒的方式，採用哪一種窯型設計？",
+        text: "早期窯廠為什麼要把煙囪蓋得這麼高？",
         correctReaction:
-          "採用「倒焰式」，讓火焰與熱氣流在窯內循環，提高燒製的均勻度",
+          "沒錯！蓋得越高，就能利用「煙囪效應」將灰渣抽出，讓窯內燃燒更充分、坯體不被煤灰沾黏",
       },
       {
         type: "line",
@@ -847,15 +775,14 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "因為鶯歌的窯業也開始換新的燒窯方式",
+        text: "因為鶯歌的窯場環境開始轉變了",
       },
       {
         type: "question",
         qIndex: 3,
         char: "guide",
-        text: "煙囪為何逐漸消失？主要原因是什麼？",
-        correctReaction:
-          "後來窯爐陸續改用瓦斯窯，煤炭窯逐漸減少，煙囪也失去原本的功能",
+        text: "煙囪為何逐漸消失？下列哪一個不是主要原因？",
+        correctReaction: "A、C、D都是煙囪消失的原因",
       },
       {
         type: "line",
@@ -865,7 +792,7 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "差很多瓦斯窯升溫快，溫度也比較容易精準控制",
+        text: "差很大喔～瓦斯窯升溫快，溫度也比較容易精準控制，才不會到處「鸚鸚勾勾」",
       },
       {
         type: "line",
@@ -875,12 +802,12 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "沒錯相比煤炭需要耗費大量人力顧窯，瓦斯窯的火候比較均勻，產品不良率也能降低，還能大幅提高產量",
+        text: "沒錯相比其他需要耗費大量人力顧窯，瓦斯窯的火候比較均勻，產品不良率也能降低，還能大幅提高產量",
       },
       {
         type: "line",
         char: "hero",
-        text: "原來瓦斯窯不只是比較方便，連陶瓷生產的效率都提高了",
+        text: "原來瓦斯窯不只是比較方便，還能讓陶瓷產業升級。",
       },
       {
         type: "line",
@@ -895,7 +822,7 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "這座煙囪留下來的，就是那段窯業發展的痕跡",
+        text: "這兩座老煙囪留下來的是那段旅人對鶯歌陶鄉的記憶。",
       },
       {
         type: "line",
@@ -920,14 +847,15 @@ const STATIONS = [
     },
     address: "新北市鶯歌區北鶯里239號",
     location: {
-      lat: 24.956125698562957,
-      lng: 121.35937340990445,
+      lat: 24.9559393,
+      lng: 121.3586762,
       radius: 40,
     },
-    background: "角色照片素材庫/站點四/合興窯煙囪.jpg",
+    background: "角色照片素材庫/鶯歌/站點四/合興窯煙囪.jpg",
   },
   {
     id: 5,
+    route: "鶯歌",
     name: "站點五 烘爐窯",
     questions: [
       {
@@ -938,7 +866,7 @@ const STATIONS = [
           "因應不同工匠使用材料的習慣",
           "為了消化窯廠的瑕疵品及節省成本",
           "為了讓牆面更加美觀",
-          "住戶刻意要求使用不同時期的磚瓦",
+          "住戶特別的要求",
         ],
       },
       {
@@ -949,20 +877,18 @@ const STATIONS = [
       {
         qtype: "選擇題",
         question:
-          "這座烘爐窯建於日治時期,見證了鶯歌陶業的發展誰在1929年建造了這座烘爐窯？",
+          "這座烘爐窯建於日治時期，見證了鶯歌陶業的發展，是誰建造了這座烘爐窯？",
         options: ["賴氏人家", "鶯歌政治人物", "賴婆", "陳斐然家族族人"],
       },
       {
-        qtype: "複選題",
-        question:
-          "窯廠燒壞的器皿被打碎掩埋後，後來重新出現在故事巷這些老瓷片被如何再利用？",
+        qtype: "選擇題",
+        question: "仔細觀察烘爐窯，下列哪一項「不是」它的建築特色？",
         options: [
-          "製作新陶器",
-          "製作牆面裝飾",
-          "鑲嵌於步道路面",
-          "製作陶瓷藝術品",
+          "一樓作為工廠，二樓作為住家",
+          "牆面使用不同種類的回收磚瓦建造",
+          "保留了完整的四角窯煙囪",
+          "外牆使用整齊一致的紅磚砌成",
         ],
-        multi: true,
       },
     ],
     dialogue: [
@@ -974,7 +900,7 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "先看看附近的古厝，你有沒有發現牆面有點特別？",
+        text: "先看看附近的古厝，您有沒有發現牆面有點特別？",
       },
       {
         type: "line",
@@ -992,7 +918,7 @@ const STATIONS = [
         char: "guide",
         text: "仔細觀察附近古厝的牆面，會發現磚瓦的種類並不完全相同。為什麼一面牆上會出現不同種類的磚瓦？",
         correctReaction:
-          "以前窯廠燒製時，多少會出現瑕疵品這些磚瓦不一定會直接丟掉，有些就拿來蓋房子、砌牆，既能再利用，也能節省材料",
+          "以前窯廠燒製時，多少會出現瑕疵品，這些瑕疵磚瓦不會丟掉，有些會給親友拿來蓋房子、砌牆，既能回收再利用，也能省錢",
       },
       {
         type: "line",
@@ -1021,12 +947,13 @@ const STATIONS = [
         type: "question",
         qIndex: 2,
         char: "guide",
-        text: "這座烘爐窯建於日治時期，見證了鶯歌陶業的發展。誰在1929年建造了這座烘爐窯？",
+        text: "這座烘爐窯建於日治時期，見證了鶯歌陶業的發展，是誰建造了這座烘爐窯？",
         correctReaction: "沒錯，就是賴氏人家",
       },
       {
         type: "knowledge",
-        text: "1929年，賴氏人家建造了這座烘爐窯，早期生產磚瓦與烘爐，戰後轉為製作陶器，後來更擴及碗盤與磁磚，見證了鶯歌陶瓷產業的時代轉變",
+        title: "烘爐窯",
+        text: "賴氏人家建造了這座烘爐窯，早期生產烘爐，戰後轉為製作生活陶瓷，見證了鶯歌陶瓷產業時代的轉變。",
       },
       {
         type: "line",
@@ -1036,50 +963,40 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "不過窯廠留下的不只有這座窯你再看看故事巷裡的地面",
-      },
-      {
-        type: "notice",
-        text: "先繼續往前走，探索一下",
-      },
-      {
-        type: "line",
-        char: "hero",
-        text: "等等，地上這些好像是陶瓷碎片？",
-        background: "角色照片素材庫/站點五/故事巷.jpg",
+        text: "不過窯廠留下的不只有這座窯",
       },
       {
         type: "line",
         char: "guide",
-        text: "你猜得沒錯以前窯廠燒壞的器皿，有些會打碎後掩埋後來這些老瓷片又被重新利用，成了故事巷裡的一部分",
+        text: "沒錯！沿著故事巷往前走，可以從不同角度看到更多建築細節。",
+        background: "角色照片素材庫/鶯歌/站點五/沿著故事巷.jpg",
+      },
+      {
+        type: "notice",
+        text: "沿著故事巷往前走，從不同角度觀察烘爐窯的建築。",
+      },
+      {
+        type: "line",
+        char: "hero",
+        text: "從這邊看，真的發現不少剛才沒注意到的地方！",
+      },
+      {
+        type: "line",
+        char: "guide",
+        text: "您觀察得很仔細，那我考考下面哪一個「不是」烘爐窯的建築特色？",
       },
       {
         type: "question",
         qIndex: 3,
         char: "guide",
-        text: "窯廠燒壞的器皿被打碎掩埋後，後來重新出現在故事巷。這些老瓷片被如何再利用？（複選）",
+        text: "仔細觀察烘爐窯，下列哪一項「不是」它的建築特色？",
         correctReaction:
-          "沒錯，這些老瓷片被用來製作牆面裝飾，也有些鑲嵌於步道路面",
+          "沒錯！烘爐窯的外牆其實是用不同種類的回收磚瓦砌成，不是整齊一致的紅磚",
       },
       {
         type: "line",
         char: "hero",
-        text: "被當成廢料的瓷片，現在居然又變成了街道的一部分",
-      },
-      {
-        type: "line",
-        char: "guide",
-        text: "所以你看到的這些老瓷片，其實也是鶯歌陶業留下來的記憶",
-      },
-      {
-        type: "line",
-        char: "hero",
-        text: "從古厝的磚瓦，到烘爐窯，再到地上的瓷片，好像到處都找得到以前陶業留下的痕跡",
-      },
-      {
-        type: "line",
-        char: "hero",
-        text: "一塊不起眼的瓷片，也有一段故事",
+        text: "原來從故事巷這邊看，真的能發現不少細節！",
       },
       {
         type: "line",
@@ -1106,12 +1023,13 @@ const STATIONS = [
     location: {
       lat: 24.95353101601439,
       lng: 121.35555712927186,
-      radius: 40,
+      radius: 25,
     },
-    background: "角色照片素材庫/站點五/烘爐窯.jpg",
+    background: "角色照片素材庫/鶯歌/站點五/烘爐窯.jpg",
   },
   {
     id: 6,
+    route: "鶯歌",
     name: "站點六 益成記",
     questions: [
       {
@@ -1123,7 +1041,7 @@ const STATIONS = [
         qtype: "選擇題",
         question: "益成記被稱為鶯歌的「陶瓷大學」與下列何者無關？",
         options: [
-          "曾經是鶯歌製陶技術的重要傳承地",
+          "曾經是鶯歌製陶技術重要的傳承地",
           "培養過許多很有名的製陶師傅",
           "曾經研發許多生活用陶瓷品",
           "此處在當時是鶯歌重要的陶瓷交易場所",
@@ -1132,7 +1050,19 @@ const STATIONS = [
       {
         qtype: "選擇題",
         question: "益成記曾引進哪裡的陶藝師傅？",
-        options: ["大陸景德鎮", "日本", "大陸福州", "台灣中南部"],
+        options: ["大陸景德鎮", "日本", "中國大陸福州", "台灣中南部"],
+      },
+      {
+        qtype: "複選題",
+        question:
+          "窯廠燒壞的器皿被打碎掩埋後，後來重新出現在故事巷。這些老瓷片被如何再利用？",
+        options: [
+          "製作新陶器",
+          "製作牆面裝飾",
+          "鑲嵌於步道路面",
+          "製作陶瓷藝術品",
+        ],
+        multi: true,
       },
     ],
     dialogue: [
@@ -1144,12 +1074,12 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "這裡可是鶯歌以前很知名的窯廠——益成記",
+        text: "這裡可是鶯歌以前很知名的窯廠——益成記工廠",
       },
       {
         type: "line",
         char: "guide",
-        text: "讓你猜猜，益成記是誰創辦的？",
+        text: "讓您猜猜，益成記是誰創辦的？",
       },
       {
         type: "question",
@@ -1160,6 +1090,7 @@ const STATIONS = [
       },
       {
         type: "knowledge",
+        title: "益成記陶器製造工場",
         text: "1924年，陳斐然設立「益成記陶器製造工場」，是早期鶯歌重要的陶瓷窯廠之一",
       },
       {
@@ -1185,14 +1116,25 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "先讓你猜看看，等等再告訴你",
+        text: "先讓您猜看看，等等再告訴您",
       },
       {
         type: "question",
         qIndex: 1,
         char: "guide",
-        text: "益成記被稱為鶯歌的「陶瓷大學」，與下列何者無關？",
-        correctReaction: "沒錯，這個稱號跟陶瓷交易沒有關係",
+        text: "益成記被稱為鶯歌的「陶瓷大學」與下列何者無關？",
+        correctReaction: "沒錯！這個稱號跟陶瓷交易無關，真正的販賣部在另一個地方",
+      },
+      {
+        type: "line",
+        char: "guide",
+        text: "我這裡正好有一張當年的照片",
+      },
+      {
+        type: "knowledge",
+        title: "益成記陶器販賣部舊照片",
+        photo: "角色照片素材庫/鶯歌/站點六/益成記-舊店面.jpg",
+        vintage: true,
       },
       {
         type: "line",
@@ -1207,7 +1149,7 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "當時還特別從外地請來師傅傳授技術，你猜他們是從哪裡來的？",
+        text: "當時還特別從外地請來師傅傳授技術，您猜他們是從哪裡來的？",
       },
       {
         type: "question",
@@ -1238,6 +1180,39 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
+        text: "仔細觀察周遭地上，有沒有發現特別之處",
+      },
+      {
+        type: "line",
+        char: "hero",
+        text: "等等，地上這些好像是陶瓷碎片？",
+      },
+      {
+        type: "line",
+        char: "guide",
+        text: "您猜得沒錯，以前窯廠燒壞的器皿，有些會打碎後掩埋，後來這些老瓷片又被挖出來重新被利用。",
+      },
+      {
+        type: "question",
+        qIndex: 3,
+        char: "guide",
+        text: "窯廠燒壞的器皿被打碎掩埋後，後來重新出現在故事巷。這些老瓷片被如何再利用？",
+        correctReaction:
+          "沒錯，這些老瓷片被用來製作牆面裝飾，也有些鑲嵌於步道路面",
+      },
+      {
+        type: "line",
+        char: "hero",
+        text: "被當成廢料的瓷片，現在居然又變成了街道的一部分",
+      },
+      {
+        type: "line",
+        char: "guide",
+        text: "所以您看到的這些老瓷片，其實也是鶯歌陶業留下來的記憶",
+      },
+      {
+        type: "line",
+        char: "guide",
         text: "走吧，繼續看看鶯歌還留下哪些故事",
       },
       {
@@ -1258,14 +1233,15 @@ const STATIONS = [
     },
     address: "文化路、現順億窯業一帶",
     location: {
-      lat: 24.95355320078445,
-      lng: 121.35488296931761,
-      radius: 65,
+      lat: 24.9532920,
+      lng: 121.3550210,
+      radius: 25,
     },
-    background: "角色照片素材庫/站點六/益成記.jpg",
+    background: "角色照片素材庫/鶯歌/站點六/益成記.jpg",
   },
   {
     id: 7,
+    route: "鶯歌",
     name: "站點七 大榕樹和窯工聚落遺址",
     questions: [
       {
@@ -1275,14 +1251,14 @@ const STATIONS = [
         options: [
           "以道路作為分界",
           "以山脈作為分界",
-          "以兩棵大榕樹連成一線作為界線",
+          "以兩棵百年大榕樹連成一線作為界線",
           "以溪流作為分界",
         ],
       },
       {
         qtype: "選擇題",
         question:
-          "早期鶯歌窯場缺乏工人，為了吸引外地陶工前來工作，窯廠老闆採取了什麼方式？",
+          "早期鶯歌窯場缺乏工人，為了吸引外地人來工作，窯廠老闆採取了什麼方式？",
         options: [
           "提供免費餐食與住宿",
           "提供土地讓陶工自行蓋房子",
@@ -1310,14 +1286,14 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "你知道嗎？以前這棵榕樹可是很重要的「界線」",
+        text: "您知道嗎？以前這棵榕樹可是很重要的「界線」",
       },
       {
         type: "question",
         qIndex: 0,
         char: "guide",
         text: "早期鶯歌文化路有「兩陳一余」三大地主，兩陳家土地廣闊。早期兩大家族是以什麼作為土地分界？",
-        correctReaction: "沒錯，就是以兩棵大榕樹連成一線作為界線",
+        correctReaction: "沒錯，就是以兩棵大樹連成一線作為界線",
       },
       {
         type: "line",
@@ -1327,8 +1303,8 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "當時這一帶大多還是農地後來火車站遷到文化路附近，窯場和工廠陸續興建，也帶來另一個問題——工人不夠",
-        background: "角色照片素材庫/站點七/窯工部落.jpg",
+        text: "當時這一帶大多是農地，後來火車站遷到文化路，窯場和工廠也跟著陸續興建，但是也帶來另一個問題——缺工",
+        background: "角色照片素材庫/鶯歌/站點七/窯工部落.jpg",
       },
       {
         type: "line",
@@ -1338,13 +1314,13 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "所以窯廠老闆開始想辦法吸引外地陶工來工作",
+        text: "所以窯廠老闆開始想辦法吸引外地人來工作",
       },
       {
         type: "question",
         qIndex: 1,
         char: "guide",
-        text: "早期鶯歌窯場缺乏工人，為了吸引外地陶工前來工作，窯廠老闆採取了什麼方式？",
+        text: "早期鶯歌窯場缺乏工人，為了吸引外地人來工作，窯廠老闆採取了什麼方式？",
         correctReaction:
           "窯廠老闆提供土地，讓外地陶工自己蓋房子，連同家人一起住下來，也解決了工人居住的問題",
       },
@@ -1409,12 +1385,13 @@ const STATIONS = [
     location: {
       lat: 24.952784092616902,
       lng: 121.35459372883528,
-      radius: 40,
+      radius: 25,
     },
-    background: "角色照片素材庫/站點七/榕樹.jpg",
+    background: "角色照片素材庫/鶯歌/站點七/榕樹.jpg",
   },
   {
     id: 8,
+    route: "鶯歌",
     name: "站點八 陳映真故居",
     questions: [
       {
@@ -1424,7 +1401,7 @@ const STATIONS = [
         options: [
           "讓他對研究工人議題有興趣",
           "讓他對成為工程議題有興趣",
-          "使他更能深刻體會勞動階級的生活",
+          "使他更能深刻體會勞動階級的辛酸",
           "讓他對鶯歌文史相關創作有興趣",
         ],
       },
@@ -1458,12 +1435,38 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "這次帶你認識一位曾在鶯歌生活過的作家——陳映真",
+        text: "這次帶您認識一位曾在鶯歌生活過的作家——陳映真",
       },
       {
         type: "line",
         char: "hero",
         text: "作家？他和鶯歌有什麼關係？",
+      },
+      {
+        type: "line",
+        char: "guide",
+        text: "眼前這棟房子，就是他小時候住過的地方",
+      },
+      {
+        type: "line",
+        char: "hero",
+        text: "跟現在看到的樣子一樣嗎？",
+      },
+      {
+        type: "line",
+        char: "guide",
+        text: "當然不一樣，您看看以前長什麼樣子",
+      },
+      {
+        type: "knowledge",
+        title: "陳映真鶯歌故居",
+        vintage: true,
+        photo: "角色照片素材庫/鶯歌/站點八/陳映真鶯歌故居.JPG",
+      },
+      {
+        type: "line",
+        char: "hero",
+        text: "原來以前長這樣，變化真大",
       },
       {
         type: "line",
@@ -1478,12 +1481,12 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "沒錯，而這些童年所見，也影響了他後來的創作",
+        text: "沒錯，而這些童年所見，加上與他鶯歌國小同學相處，也影響了他後來的創作。",
       },
       {
         type: "line",
         char: "guide",
-        text: "那你覺得，這段經歷帶給他什麼影響？",
+        text: "那您覺得，這段經歷帶給他什麼影響？",
       },
       {
         type: "question",
@@ -1505,7 +1508,7 @@ const STATIONS = [
       {
         type: "line",
         char: "hero",
-        text: "連鶯歌也被寫進小說裡？",
+        text: "連鶯歌生活記憶都被寫進小說裡？",
       },
       {
         type: "line",
@@ -1515,12 +1518,12 @@ const STATIONS = [
       {
         type: "line",
         char: "hero",
-        text: "該不會有我們前面去過的地方吧？",
+        text: "該不會有我們要去的其他地方也在裡面吧？",
       },
       {
         type: "line",
         char: "guide",
-        text: "還記得一路探索過哪些地方嗎？想想看！",
+        text: "對，記得走過哪些地方嗎？想想看！",
       },
       {
         type: "question",
@@ -1532,7 +1535,7 @@ const STATIONS = [
       {
         type: "line",
         char: "hero",
-        text: "這不就是我們前面走過的地方嗎！",
+        text: "就是我們要尋找闖關的地方嗎！",
       },
       {
         type: "line",
@@ -1577,7 +1580,7 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "這個答案，就換你自己找找看吧！",
+        text: "這個答案，就換您自己找找看吧！",
       },
       {
         type: "question",
@@ -1589,7 +1592,7 @@ const STATIONS = [
       {
         type: "knowledge",
         title: "《人間》雜誌",
-        text: "1985年創刊，以影像與報導記錄真實社會，關注弱勢、族群與社會議題，也在臺灣社會變遷的年代留下重要紀錄",
+        text: "1985年創刊，以影像與報導記錄真實社會，關注弱勢、族群與社會議題，也在臺灣社會變遷的年代裡，留下重要印記。",
       },
       {
         type: "line",
@@ -1641,19 +1644,20 @@ const STATIONS = [
     location: {
       lat: 24.953384573507492,
       lng: 121.35443331698151,
-      radius: 65,
+      radius: 25,
     },
-    background: "角色照片素材庫/站點八/陳映真故居.jpg",
+    background: "角色照片素材庫/鶯歌/站點八/陳映真故居.jpg",
   },
   {
     id: 9,
+    route: "鶯歌",
     name: "站點九 鶯歌福興宮",
     questions: [
       {
         qtype: "選擇題",
-        question: "仔細觀察福興宮,你會發現有什麼特別之處?",
+        question: "仔細觀察福興宮,您會發現有什麼特別之處?",
         options: [
-          "廟中廟建築",
+          "清代時期磚造建築",
           "日治時期仿巴洛克式建築",
           "子母廟建築",
           "石頭厝建築",
@@ -1700,19 +1704,19 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "仔細看看眼前的福興宮，你能發現它特別的地方嗎？",
+        text: "仔細看看眼前的福興宮，您能發現它特別的地方嗎？",
       },
       {
         type: "question",
         qIndex: 0,
         char: "guide",
-        text: "仔細觀察福興宮，你會發現有什麼特別之處？",
-        correctReaction: "答對了！福興宮最特別的，就是「廟中廟」的建築格局。",
+        text: "仔細觀察福興宮，您會發現有什麼特別之處？",
+        correctReaction: "答對了！福興宮最特別的，就是清代時期磚造建築的建築格局",
       },
       {
         type: "line",
         char: "hero",
-        text: "難怪看起來像一座廟裡，還留著另一座廟！",
+        text: "原來如此！難怪從外觀還能看到這些傳統建築的特色",
       },
       {
         type: "line",
@@ -1742,7 +1746,7 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "是啊！所以製陶人家遇到困難時，常會來福興宮祈求燒窯、生意順利。",
+        text: "是啊！所以製陶人家遇到困難時，常會來福興宮祈求燒窯順利、生意興榮。",
       },
       {
         type: "line",
@@ -1752,12 +1756,12 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "不只喔！這裡還奉祀著製陶人家崇敬的羅明先師。",
+        text: "不只喔！這裡還奉祀著製陶人家崇敬的陶神羅文與羅明。",
       },
       {
         type: "line",
         char: "hero",
-        text: "羅明先師？他和製陶也有關？",
+        text: "他們和製陶也有關？",
       },
       {
         type: "line",
@@ -1782,7 +1786,7 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "很接近！那你猜猜，現代哪種製陶方式最接近「車製」？",
+        text: "很接近！那您猜猜，現代哪種製陶方式最接近「車製」？",
       },
       {
         type: "question",
@@ -1819,7 +1823,7 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "沒錯！考考你，羅明先師的聖誕慶典是哪一天？",
+        text: "沒錯！考考您，羅明先師的聖誕慶典是哪一天？",
       },
       {
         type: "question",
@@ -1856,7 +1860,7 @@ const STATIONS = [
       {
         type: "line",
         char: "hero",
-        text: "原本以為只是一座廟，沒想到還藏著這麼多製陶人的故事。",
+        text: "原本以為只是一座廟，沒想到還藏著這麼多跟製陶人有關的信仰。",
       },
       {
         type: "line",
@@ -1886,14 +1890,15 @@ const STATIONS = [
     },
     address: "新北市鶯歌區中正二路63號",
     location: {
-      lat: 24.9508,
-      lng: 121.3508,
+      lat: 24.950727385126346,
+      lng: 121.350359872294,
       radius: 40,
     },
-    background: "角色照片素材庫/站點九/福興宮.jpg",
+    background: "角色照片素材庫/鶯歌/站點九/福興宮.jpg",
   },
   {
     id: 10,
+    route: "鶯歌",
     name: "站點十 鶯歌老街-古早窯",
     questions: [
       {
@@ -1904,7 +1909,7 @@ const STATIONS = [
       {
         qtype: "選擇題",
         question: "古早窯主要是生產哪些產品？",
-        options: ["碗盤與茶具", "磁磚(馬賽克)", "花器與陶甕", "工業用磁器"],
+        options: ["碗盤與茶具", "磁磚(馬賽克)", "花器與陶甕", "工業用瓷器"],
       },
       {
         qtype: "選擇題",
@@ -1931,7 +1936,7 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "沒錯！不過你知道眼前這座是什麼窯嗎？",
+        text: "沒錯！不過您知道眼前這座是什麼窯嗎？",
       },
       {
         type: "line",
@@ -1976,14 +1981,14 @@ const STATIONS = [
       },
       {
         type: "notice",
-        text: "觀察隧道窯內留下的物品",
+        text: "觀察隧道窯內留下的遺留物品",
       },
       {
         type: "question",
         qIndex: 1,
         char: "guide",
         text: "根據窯內留下的線索，古早窯過去主要生產哪一類產品？",
-        correctReaction: "答對了！以前這裡主要生產磁磚，也就是常見的馬賽克。",
+        correctReaction: "答對了！以前這裡主要生產磁磚，也就是常見的馬賽克(磁磚)。",
       },
       {
         type: "line",
@@ -2015,7 +2020,7 @@ const STATIONS = [
       {
         type: "line",
         char: "hero",
-        text: "原來是讓整台窯車慢慢通過！",
+        text: "原來是讓整台窯車像火車車廂一樣，一節一節慢慢推進去！",
       },
       {
         type: "line",
@@ -2024,7 +2029,6 @@ const STATIONS = [
       },
       {
         type: "knowledge",
-        title: "像生產線一樣的窯",
         text: "隧道窯就像一條長長的生產線，產品隨著窯車依序通過不同的燒製區域，讓燒製能持續進行，也更適合大量生產。",
       },
       {
@@ -2045,7 +2049,7 @@ const STATIONS = [
       {
         type: "line",
         char: "guide",
-        text: "最後再來看看你能不能答對！",
+        text: "最後再來看看您能不能答對！",
       },
       {
         type: "question",
@@ -2102,10 +2106,209 @@ const STATIONS = [
     },
     address: "新北市鶯歌區重慶街65之1號",
     location: {
-      lat: 24.9516,
-      lng: 121.3505,
-      radius: 35,
+      lat: 24.95162023486373,
+      lng: 121.34966091069627,
+      radius: 40,
     },
-    background: "角色照片素材庫/站點十/古早窯.jpg",
+    background: "角色照片素材庫/鶯歌/站點十/古早窯.jpg",
   },
+
+  // ---------- 三峽路線站點 ----------
+  // 要新增三峽的站點，直接照上面鶯歌站點一樣的格式複製一份，貼在這裡即可，注意三點：
+  //   1. id 要接著現有最大的 id 往下編號（目前鶯歌用到 10，所以三峽從 11 開始），全部路線共用同一組
+  //      id 空間，同一個 id 不能重複、也不能跟鶯歌的 1~10 撞到
+  //   2. route 要填 "三峽"（前端地圖/集章本靠這個欄位分流，決定切換路線時要顯示哪些站點）
+  //   3. worker/src/index.js 裡的 routeForStation() 也要記得同步更新，把新加的 id 歸進「三峽」，
+  //      不然後端算點數/餘額時會誤判成鶯歌路線的站點
+  //
+  // 下面 11 個站點目前只是先把「名稱＋GPS 座標」註記上去，讓地圖上能看到點位置，
+  // 劇情、題目、照片都還沒填，questions 先留空陣列、dialogue 先放一句佔位文字。
+  // 之後補實際內容時，照鶯歌站點的格式把 questions／dialogue／background 等欄位填滿即可，
+  // 不需要新增或搬動這幾個站點物件本身。
+  {
+    id: 11,
+    route: "三峽",
+    name: "站點一 運動場神社&菜園公",
+    questions: [],
+    dialogue: [
+      { type: "line", char: "guide", text: "（這一站的內容準備中，敬請期待）" },
+      { type: "end" },
+    ],
+    characters: {
+      guide: { name: "楊嚮導", portrait: "角色照片素材庫/角色/楊嚮導.png", side: "left" },
+      hero: { name: "小明", portrait: "角色照片素材庫/角色/小明.png", side: "right" },
+    },
+    location: { lat: 24.93233969346355, lng: 121.36778241314224, radius: 30 },
+    // 這一站有兩張照片：鳶山網球場.jpg（運動場那半）、菜園公.jpg（菜園公那半），
+    // 先用網球場當代表照，之後補劇情時兩張都可以放進 dialogue 裡個別使用
+    background: "角色照片素材庫/三峽/站點一/鳶山網球場.jpg",
+  },
+  {
+    id: 12,
+    route: "三峽",
+    name: "站點二 無患子",
+    questions: [],
+    dialogue: [
+      { type: "line", char: "guide", text: "（這一站的內容準備中，敬請期待）" },
+      { type: "end" },
+    ],
+    characters: {
+      guide: { name: "楊嚮導", portrait: "角色照片素材庫/角色/楊嚮導.png", side: "left" },
+      hero: { name: "小明", portrait: "角色照片素材庫/角色/小明.png", side: "right" },
+    },
+    location: { lat: 24.931982832050842, lng: 121.36288020657756, radius: 30 },
+    background: "角色照片素材庫/三峽/站點二/尋找老樹.jpg",
+  },
+  {
+    id: 13,
+    route: "三峽",
+    name: "站點三 仙公廟",
+    questions: [],
+    dialogue: [
+      { type: "line", char: "guide", text: "（這一站的內容準備中，敬請期待）" },
+      { type: "end" },
+    ],
+    characters: {
+      guide: { name: "楊嚮導", portrait: "角色照片素材庫/角色/楊嚮導.png", side: "left" },
+      hero: { name: "小明", portrait: "角色照片素材庫/角色/小明.png", side: "right" },
+    },
+    location: { lat: 24.92998119789859, lng: 121.36358683300122, radius: 30 },
+    background: "角色照片素材庫/三峽/站點三/獅頭岩仙公廟.jpg",
+  },
+  {
+    id: 14,
+    route: "三峽",
+    name: "站點四 三峽文史館",
+    questions: [],
+    dialogue: [
+      { type: "line", char: "guide", text: "（這一站的內容準備中，敬請期待）" },
+      { type: "end" },
+    ],
+    characters: {
+      guide: { name: "楊嚮導", portrait: "角色照片素材庫/角色/楊嚮導.png", side: "left" },
+      hero: { name: "小明", portrait: "角色照片素材庫/角色/小明.png", side: "right" },
+    },
+    location: { lat: 24.934601485239238, lng: 121.369575384069, radius: 30 },
+    background: "角色照片素材庫/三峽/站點四/三峽歷史文物館.jpg",
+  },
+  {
+    id: 15,
+    route: "三峽",
+    name: "站點五 三峽老街",
+    questions: [],
+    dialogue: [
+      { type: "line", char: "guide", text: "（這一站的內容準備中，敬請期待）" },
+      { type: "end" },
+    ],
+    characters: {
+      guide: { name: "楊嚮導", portrait: "角色照片素材庫/角色/楊嚮導.png", side: "left" },
+      hero: { name: "小明", portrait: "角色照片素材庫/角色/小明.png", side: "right" },
+    },
+    location: { lat: 24.933792157212206, lng: 121.36986157287552, radius: 30 },
+    background: "角色照片素材庫/三峽/站點五/三峽老街.jpg",
+  },
+  {
+    id: 16,
+    route: "三峽",
+    name: "站點六 三峽祖師爺",
+    questions: [],
+    dialogue: [
+      { type: "line", char: "guide", text: "（這一站的內容準備中，敬請期待）" },
+      { type: "end" },
+    ],
+    characters: {
+      guide: { name: "楊嚮導", portrait: "角色照片素材庫/角色/楊嚮導.png", side: "left" },
+      hero: { name: "小明", portrait: "角色照片素材庫/角色/小明.png", side: "right" },
+    },
+    location: { lat: 24.933824278051453, lng: 121.37039226431428, radius: 30 },
+    background: "角色照片素材庫/三峽/站點六/三峽祖師廟.jpg",
+  },
+  {
+    id: 17,
+    route: "三峽",
+    name: "站點七 三峽宰樞廟",
+    questions: [],
+    dialogue: [
+      { type: "line", char: "guide", text: "（這一站的內容準備中，敬請期待）" },
+      { type: "end" },
+    ],
+    characters: {
+      guide: { name: "楊嚮導", portrait: "角色照片素材庫/角色/楊嚮導.png", side: "left" },
+      hero: { name: "小明", portrait: "角色照片素材庫/角色/小明.png", side: "right" },
+    },
+    location: { lat: 24.934392313501462, lng: 121.37181404624818, radius: 30 },
+    background: "角色照片素材庫/三峽/站點七/三峽宰樞廟.jpg",
+  },
+  {
+    id: 18,
+    route: "三峽",
+    name: "站點八 三峽拱橋",
+    questions: [],
+    dialogue: [
+      { type: "line", char: "guide", text: "（這一站的內容準備中，敬請期待）" },
+      { type: "end" },
+    ],
+    characters: {
+      guide: { name: "楊嚮導", portrait: "角色照片素材庫/角色/楊嚮導.png", side: "left" },
+      hero: { name: "小明", portrait: "角色照片素材庫/角色/小明.png", side: "right" },
+    },
+    location: { lat: 24.934982683780028, lng: 121.37361362246838, radius: 30 },
+    background: "角色照片素材庫/三峽/站點八/三峽拱橋.jpg",
+  },
+  {
+    id: 19,
+    route: "三峽",
+    name: "站點九 藍染公園",
+    questions: [],
+    dialogue: [
+      { type: "line", char: "guide", text: "（這一站的內容準備中，敬請期待）" },
+      { type: "end" },
+    ],
+    characters: {
+      guide: { name: "楊嚮導", portrait: "角色照片素材庫/角色/楊嚮導.png", side: "left" },
+      hero: { name: "小明", portrait: "角色照片素材庫/角色/小明.png", side: "right" },
+    },
+    location: { lat: 24.932993407563075, lng: 121.36893545341186, radius: 30 },
+    background: "角色照片素材庫/三峽/站點九/藍染公園.jpg",
+  },
+  {
+    id: 20,
+    route: "三峽",
+    name: "站點十 百年土地公",
+    questions: [],
+    dialogue: [
+      { type: "line", char: "guide", text: "（這一站的內容準備中，敬請期待）" },
+      { type: "end" },
+    ],
+    characters: {
+      guide: { name: "楊嚮導", portrait: "角色照片素材庫/角色/楊嚮導.png", side: "left" },
+      hero: { name: "小明", portrait: "角色照片素材庫/角色/小明.png", side: "right" },
+    },
+    location: { lat: 24.929104765155884, lng: 121.366421762081, radius: 30 },
+    background: "角色照片素材庫/三峽/站點十/福仁宮.jpg",
+  },
+  {
+    id: 21,
+    route: "三峽",
+    name: "站點十一 感應堂三姓公",
+    questions: [],
+    dialogue: [
+      { type: "line", char: "guide", text: "（這一站的內容準備中，敬請期待）" },
+      { type: "end" },
+    ],
+    characters: {
+      guide: { name: "楊嚮導", portrait: "角色照片素材庫/角色/楊嚮導.png", side: "left" },
+      hero: { name: "小明", portrait: "角色照片素材庫/角色/小明.png", side: "right" },
+    },
+    location: { lat: 24.928462634273618, lng: 121.36563319268672, radius: 30 },
+    background: "角色照片素材庫/三峽/站點十一/感應堂三姓公.jpg",
+  },
+];
+
+// 路線清單：地圖畫面的路線切換鈕靠這份清單產生按鈕，順序就是顯示順序。
+// 新增路線時，在這裡加一筆、上面 STATIONS 加對應 route 的站點、
+// 同時記得更新 worker/src/index.js 的 routeForStation()。
+// 試玩版目前只放鶯歌路線的內容，三峽還沒定案，這裡就不列出那個路線了
+const ROUTES = [
+  { id: "鶯歌", name: "鶯歌路線", icon: "🚉", mapTitle: "鶯歌時光地圖" },
 ];

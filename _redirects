@@ -1,0 +1,5 @@
+# Cloudflare Pages 專用：擋掉不該公開的後端設定檔
+# worker/ 底下是 Cloudflare Worker 的原始碼跟設定（wrangler.toml、schema.sql 等），
+# 真正的密鑰都是用 `wrangler secret put` 設定、不在這些檔案裡，但終究不是要給訪客看的東西，
+# 這條規則會讓 /worker/* 全部回應 404（顯示首頁內容，但狀態碼是 404，不會露出真實檔案內容）
+/worker/*  /index.html  404
