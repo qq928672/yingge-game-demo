@@ -8,6 +8,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Cinzel:wght@600;700&family=Noto+Serif+TC:wght@500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="styles.css">
+<style>
+  /* 試玩版專屬：登入卡片本來是給 Google 登入那顆小按鈕（40px 高）預留的空間，
+     直接套用全站通用的 button 樣式（14px padding + 16px 粗體字）在這裡顯得特別大，
+     縮小到跟卡片其他文字比例接近 */
+  #demo-start-btn { padding: 11px 14px; font-size: 15px; box-shadow: 3px 3px 0 var(--ink); }
+  #demo-start-btn:active { box-shadow: 1px 1px 0 var(--ink); }
+</style>
 </head>
 <body>
 
@@ -25,7 +32,7 @@
         <div class="dossier-kicker">任 務 委 託 書</div>
         <h2>鶯歌壯遊實境解謎</h2>
         <p class="desc">您收到一份<strong>神祕委託</strong></p>
-        <button type="button" onclick="startDemoLogin()">開始體驗</button>
+        <button type="button" id="demo-start-btn" onclick="startDemoLogin()">開始體驗</button>
         <p class="google-signin-hint">試玩版：免報名、免登入，立即體驗全部站點</p>
         <div class="error-msg" id="login-error"></div>
       </div>
