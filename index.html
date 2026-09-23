@@ -12,7 +12,10 @@
   /* 試玩版專屬：登入卡片本來是給 Google 登入那顆小按鈕（40px 高）預留的空間，
      直接套用全站通用的 button 樣式（14px padding + 16px 粗體字）在這裡顯得特別大，
      縮小到跟卡片其他文字比例接近 */
-  #demo-start-btn { padding: 11px 14px; font-size: 15px; box-shadow: 3px 3px 0 var(--ink); }
+  #demo-start-btn {
+    width: auto; padding: 8px 22px; font-size: 13px; border-radius: 20px;
+    box-shadow: 2px 2px 0 var(--ink); display: block; margin: 0 auto;
+  }
   #demo-start-btn:active { box-shadow: 1px 1px 0 var(--ink); }
 </style>
 </head>
