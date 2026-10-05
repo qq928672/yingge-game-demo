@@ -7,7 +7,9 @@ const IS_LOCAL_DEV = ["localhost", "127.0.0.1"].includes(location.hostname);
 // 登入、答題、過關判定、點數兌換/核銷這些活動當天會被大量同時呼叫的動作，
 // 改走 Cloudflare Workers + D1（並發撐得比 GAS 高很多），靠 action 名稱分流。
 const API_URL = "https://script.google.com/macros/s/AKfycbytcB8w4wDFOK32d8g4FrcEiK3TQNDj0Ob8aFPINFo5t7c_jqMDfzBgnVcyailEjpPMeg/exec";
-const WORKER_API_URL = "https://yingge-game-api.ntcecea.workers.dev";
+// 試玩版連「測試用」Worker + 獨立資料庫，評審的 DEMO-JUDGE 測試帳號不會碰到正式站的玩家資料與獎品名額
+const WORKER_API_URL = "https://yingge-game-api-dev.ntcecea.workers.dev";
+const WORKER_PROD_URL = "https://yingge-game-api.ntcecea.workers.dev";
 const WORKER_ACTIONS = new Set(["login", "state", "submitAnswer", "complete", "purchase", "redeemItem", "googleLogin", "resetProgress", "clearInventory"]);
 
 // Google 帳號登入用——要跟 worker/src/index.js 裡的 GOOGLE_CLIENT_ID 是同一組，
@@ -17,7 +19,8 @@ const GOOGLE_CLIENT_ID = "423812002134-e7iebeorhcjvqk173tt559ngd59cfipl.apps.goo
 // 地圖圖磚：透過 Worker 的 /tile 路由轉發（OSM 官方的 tile.openstreetmap.org 只供輕量測試，正式流量
 // 會被擋，之前上線後地圖直接被 OSM 回 403 就是這個原因）。實際的 Thunderforest API Key 藏在 Worker
 // 那端（secret THUNDERFOREST_KEY），不會出現在前端原始碼裡，也順便讓 Worker 邊緣快取圖磚降低用量。
-const TILE_URL = WORKER_API_URL + "/tile/{z}/{x}/{y}.png";
+// 測試 Worker 沒有設圖磚金鑰，所以圖磚仍走正式 Worker（只轉發公開圖磚，不涉及任何帳號資料）
+const TILE_URL = WORKER_PROD_URL + "/tile/{z}/{x}/{y}.png";
 
 // 現場網路常常不穩、後端偶爾會逾時，所以連線失敗時自動重試幾次再放棄，
 // 減少玩家自己手動按「再試一次」的機會（伺服器回傳的業務錯誤，例如序號錯誤，
